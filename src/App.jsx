@@ -8,6 +8,7 @@ import AlbumView from './views/Album/AlbumView';
 import AddImage from './views/Album/AddImage';
 import EditImage from './views/Album/EditImage';
 import ImageView from './views/Album/ImageView';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 const { appStyles } = styles;
 
@@ -28,9 +29,9 @@ export default function App() {
               <Route exact path="/:username">
                 <Profile />
               </Route>
-              <Route exact path="/:username/:album">
+              <PrivateRoute exact path="/:username/:album">
                 <AlbumView />
-              </Route>
+              </PrivateRoute>
               <Route exact path="/addImage">
                 <AddImage />
               </Route>
