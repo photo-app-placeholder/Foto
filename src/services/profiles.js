@@ -5,8 +5,8 @@ export async function getProfile() {
   return checkError(request);
 }
 
-export async function getProfileByUserId() {
-  const request = await client.from('profiles').select('*');
+export async function getProfileByUserId(user_id) {
+  const request = await client.from('profiles').select('*').match(user_id);
   return checkError(request);
 }
 

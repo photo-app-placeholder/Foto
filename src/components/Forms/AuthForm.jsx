@@ -29,10 +29,6 @@ export default function AuthForm({ isRegistering }) {
     } catch (error) {
       alert(`Login failed, please try again. error: ${error}`);
     }
-
-    // signUpUser OR signInUser
-    // then
-    // createProfile
   };
 
   return (
