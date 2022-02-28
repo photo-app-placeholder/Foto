@@ -5,7 +5,7 @@ export default function LoginView({ isRegistering = false }) {
   return (
     <div>
       {isRegistering ? 'Register' : 'Login'}
-      <AuthForm />
+      <AuthForm isRegistering={isRegistering} />
     </div>
   );
 }

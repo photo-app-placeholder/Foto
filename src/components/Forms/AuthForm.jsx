@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { createProfile } from '../../services/profiles';
+import { signInUser, signUpUser } from '../../services/users';
 import styles from './AuthForm.css';
 
-export default function AuthForm() {
+export default function AuthForm({ isRegistering }) {
   const [formState, setFormState] = useState({
     email: '',
     username: '',
@@ -10,7 +12,24 @@ export default function AuthForm() {
 
   const { auth } = styles;
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (isRegistering) {
+        let resp = await signUpUser(formState.email, formState.password);
+        console.log(resp);
+        await createProfile({
+          username: formState.username,
+          bio: '',
+          user_id: resp.id,
+        });
+      } else {
+        let resp = await signInUser(formState.email, formState.password);
+      }
+    } catch (error) {
+      alert(`Login failed, please try again. error: ${error}`);
+    }
+
     // signUpUser OR signInUser
     // then
     // createProfile
