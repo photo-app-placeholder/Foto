@@ -15,6 +15,7 @@ export default function AddImageForm() {
   const [caption, setCaption] = useState('');
   const history = useHistory();
   const { profile } = profileHook();
+  const { username } = profile[0];
   console.log(album);
   const { user } = useUser();
 
@@ -37,7 +38,7 @@ export default function AddImageForm() {
         album_id: album.id,
       });
       alert(`your photo has been uploaded to ${album.title}`);
-      history.replace(`/${user.id}/${album.title}`);
+      history.replace(`/${username}/${album.id}`);
     } catch {
       throw new Error('something went wrong uploading your image');
     }
