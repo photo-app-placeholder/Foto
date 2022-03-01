@@ -10,6 +10,7 @@ import EditImage from './views/Album/EditImage';
 import ImageView from './views/Album/ImageView';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import CreateAlbum from './views/Album/CreateAlbum';
+import Home from './views/Home/Home';
 
 const { appStyles } = styles;
 
@@ -20,7 +21,9 @@ export default function App() {
         <UserProvider>
           <Layout>
             <Switch>
-              <Route exact path="/"></Route>
+              <Route exact path="/">
+                <Home />
+              </Route>
               <Route exact path="/login">
                 <LoginView />
               </Route>

@@ -36,6 +36,7 @@ export default function AddImageForm() {
         user_id: user.id,
         album: album.title,
         album_id: album.id,
+        private_public: album.private_public,
       });
       alert(`your photo has been uploaded to ${album.title}`);
       history.replace(`/${username}/${album.id}`);
