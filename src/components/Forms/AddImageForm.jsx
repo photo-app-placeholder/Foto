@@ -35,7 +35,7 @@ export default function AddImageForm() {
         album: album,
       });
       alert(`your photo has been uploaded to ${album}`);
-      history.replace(`/${profile.username}/${album}`);
+      history.replace(`/${user.id}/${album}`);
     } catch {
       throw new Error('something went wrong uploading your image');
     }
@@ -50,7 +50,7 @@ export default function AddImageForm() {
       const file = e.target.files[0];
       const fileExt = file.name.split('.').pop();
       const fileName = `${new Date().toISOString()}.${fileExt}`;
-      const filePath = `${profile.username}/${album}/${fileName}`;
+      const filePath = `${user.id}/${album}/${fileName}`;
       setPhoto(
         `https://enluotcdncgmywquucnd.supabase.in/storage/v1/object/public/photos/${filePath}`
       );
@@ -67,10 +67,11 @@ export default function AddImageForm() {
 
   return (
     <form>
-      <select value={album} onChange={(e) => setAlbum(e.target.value)}>
-        {albums.map((album) => (
-          <option key={album.id} value={album.title}>
-            {album.title}
+      <select onChange={(e) => setAlbum(e.target.value)}>
+        <option>Pick an album</option>
+        {albums.map((albumOption) => (
+          <option key={albumOption.id} value={albumOption.title}>
+            {albumOption.title}
           </option>
         ))}
       </select>
@@ -80,7 +81,7 @@ export default function AddImageForm() {
         accept="image/*"
         id="single"
         onChange={(e) => {
-          handleUpload();
+          handleUpload(e);
         }}
       />
       <input
