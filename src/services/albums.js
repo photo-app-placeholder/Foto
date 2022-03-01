@@ -6,11 +6,9 @@ export async function fetchAlbumsByUser(user_id) {
 }
 
 export async function findAlbumById(id) {
-  const response = await client
-    .from('albums')
-    .select('*')
-    .match({ id })
-    .single();
+  console.log('findAlbumById', id);
+  const response = await client.from('albums').select('*').match({ id });
+  // .single();
   return checkError(response);
 }
 

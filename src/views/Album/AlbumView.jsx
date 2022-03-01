@@ -10,18 +10,25 @@ export default function AlbumView() {
   const [photos, setPhotos] = useState([]);
   const { profile } = profileHook();
   const { username } = profile[0];
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log(album);
     const fetchData = async () => {
-      const data = await findAlbumById(album);
-      setCurrentAlbum(data);
-      console.log(data);
-      const data2 = await fetchPhotosByAlbumId(album);
-      setPhotos(data2);
-      console.log(data2);
+      try {
+        const data = await findAlbumById(album);
+        setCurrentAlbum(data[0]);
+        console.log(data);
+        const data2 = await fetchPhotosByAlbumId(album);
+        setPhotos(data2);
+        setLoading(false);
+        console.log(data2);
+      } catch (error) {
+        console.log(error);
+      }
     };
-    fetchData();
-  }, [album]);
+    if (loading) fetchData();
+  }, []);
 
   return (
     <div>

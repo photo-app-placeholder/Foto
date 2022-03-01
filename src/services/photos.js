@@ -9,6 +9,7 @@ export async function fetchPhotosByUser(user_id) {
 }
 
 export async function findPhotoById(id) {
+  console.log('findPhotoById', id);
   const response = await client
     .from('photoTable')
     .select('*')

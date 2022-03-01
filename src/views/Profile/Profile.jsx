@@ -5,6 +5,7 @@ import styles from './Profile.css';
 import folderImage from '../../assets/folder.jpg';
 import { Link } from 'react-router-dom';
 import profileHook from '../../hooks/profileHook';
+import LockedRoute from '../../components/LockedRoute/LockedRoute';
 
 const { albumDiv } = styles;
 
@@ -13,7 +14,7 @@ export default function Profile() {
   const { profile } = profileHook();
   const { username } = profile[0];
 
-  console.log(username);
+  // console.log(username);
 
   const [albums, setAlbums] = useState([{}]);
 
@@ -30,8 +31,9 @@ export default function Profile() {
       {albums.map((album) =>
         album.private_public ? (
           // private
+
           <Link
-            to={`/${username}/${album.id}`}
+            to={`/${username}/${album.id}/unlock`}
             key={album.id}
             className={albumDiv}
           >
