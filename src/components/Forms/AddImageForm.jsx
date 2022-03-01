@@ -6,15 +6,16 @@ import { useUser } from '../../context/UserContext';
 import { fetchAlbumsByUser } from '../../services/albums';
 import { uploadPhoto } from '../../services/photos';
 import profileHook from '../../hooks/profileHook';
+import AlbumView from '../../views/Album/AlbumView';
 
 export default function AddImageForm() {
   const [albums, setAlbums] = useState([]);
-  const [album, setAlbum] = useState('');
+  const [album, setAlbum] = useState({});
   const [photo, setPhoto] = useState('');
   const [caption, setCaption] = useState('');
   const history = useHistory();
   const { profile } = profileHook();
-  console.log(profile);
+  console.log(album);
   const { user } = useUser();
 
   useEffect(() => {
@@ -32,10 +33,11 @@ export default function AddImageForm() {
         caption: caption,
         photo: photo,
         user_id: user.id,
-        album: album,
+        album: album.title,
+        album_id: album.id,
       });
-      alert(`your photo has been uploaded to ${album}`);
-      history.replace(`/${user.id}/${album}`);
+      alert(`your photo has been uploaded to ${album.title}`);
+      history.replace(`/${user.id}/${album.title}`);
     } catch {
       throw new Error('something went wrong uploading your image');
     }
@@ -50,7 +52,7 @@ export default function AddImageForm() {
       const file = e.target.files[0];
       const fileExt = file.name.split('.').pop();
       const fileName = `${new Date().toISOString()}.${fileExt}`;
-      const filePath = `${user.id}/${album}/${fileName}`;
+      const filePath = `${user.id}/${album.title}/${fileName}`;
       setPhoto(
         `https://enluotcdncgmywquucnd.supabase.in/storage/v1/object/public/photos/${filePath}`
       );
@@ -67,10 +69,10 @@ export default function AddImageForm() {
 
   return (
     <form>
-      <select onChange={(e) => setAlbum(e.target.value)}>
+      <select onChange={(e) => setAlbum(JSON.parse(e.target.value))}>
         <option>Pick an album</option>
         {albums.map((albumOption) => (
-          <option key={albumOption.id} value={albumOption.title}>
+          <option key={albumOption.id} value={JSON.stringify(albumOption)}>
             {albumOption.title}
           </option>
         ))}

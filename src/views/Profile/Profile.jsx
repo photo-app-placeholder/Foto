@@ -21,7 +21,6 @@ export default function Profile() {
     const fetchData = async () => {
       const data = await fetchAlbumsByUser(user.id);
       setAlbums(data);
-      console.log(data);
     };
     fetchData();
   }, []);
@@ -30,7 +29,7 @@ export default function Profile() {
     <div>
       {albums.map((album) => (
         <Link
-          to={`/${username}/${album.title}`}
+          to={`/${username}/${album.id}`}
           key={album.id}
           className={albumDiv}
         >
