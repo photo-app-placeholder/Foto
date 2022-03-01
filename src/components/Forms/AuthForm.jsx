@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { createProfile } from '../../services/profiles';
 import { signInUser, signUpUser } from '../../services/users';
 import styles from './AuthForm.css';
+import { useUser } from '../../context/UserContext';
+import { useHistory } from 'react-router-dom';
 
 export default function AuthForm({ isRegistering }) {
   const [formState, setFormState] = useState({
@@ -9,6 +11,8 @@ export default function AuthForm({ isRegistering }) {
     username: '',
     password: '',
   });
+  const { setUser } = useUser();
+  const history = useHistory();
 
   const { auth } = styles;
 
@@ -25,6 +29,8 @@ export default function AuthForm({ isRegistering }) {
         });
       } else {
         let resp = await signInUser(formState.email, formState.password);
+        setUser(resp);
+        history.push(`/${formState.username}`);
       }
     } catch (error) {
       alert(`Login failed, please try again. error: ${error}`);
@@ -40,15 +46,19 @@ export default function AuthForm({ isRegistering }) {
         value={formState.email}
         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
       />
-      <label>Username:</label>
-      <input
-        type="text"
-        placeholder="Username"
-        value={formState.username}
-        onChange={(e) =>
-          setFormState({ ...formState, username: e.target.value })
-        }
-      />
+      {isRegistering && (
+        <>
+          <label>Username:</label>
+          <input
+            type="text"
+            placeholder="Username"
+            value={formState.username}
+            onChange={(e) =>
+              setFormState({ ...formState, username: e.target.value })
+            }
+          />
+        </>
+      )}
       <label>Password:</label>
       <input
         type="password"
