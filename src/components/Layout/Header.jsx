@@ -21,7 +21,7 @@ export default function Header() {
       <Link to="/register">Register</Link>
       {user.email && (
         <>
-          <Link to={`${username}`}>Your Profile</Link>
+          <Link to={`/${username}`}>Your Profile</Link>
           <Link to="/newAlbum">Add Album</Link>
           <Link to="/addImage">Add Image</Link>
         </>

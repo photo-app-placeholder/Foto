@@ -25,6 +25,7 @@ export default function AlbumView() {
 
   return (
     <div>
+      <h1>{currentAlbum.title}</h1>
       {photos.map((photo) => (
         <Link to={`/${username}/${album}/${photo.id}`} key={photo.id}>
           <img src={photo.photo} />

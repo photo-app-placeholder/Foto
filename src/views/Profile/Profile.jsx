@@ -27,16 +27,29 @@ export default function Profile() {
 
   return (
     <div>
-      {albums.map((album) => (
-        <Link
-          to={`/${username}/${album.id}`}
-          key={album.id}
-          className={albumDiv}
-        >
-          <img src={folderImage} />
-          <h3>{album.title}</h3>
-        </Link>
-      ))}
+      {albums.map((album) =>
+        album.private_public ? (
+          // private
+          <Link
+            to={`/${username}/${album.id}`}
+            key={album.id}
+            className={albumDiv}
+          >
+            <img src={folderImage} />
+            <h3>{album.title}</h3>
+          </Link>
+        ) : (
+          // public
+          <Link
+            to={`/${username}/${album.id}`}
+            key={album.id}
+            className={albumDiv}
+          >
+            <img src={folderImage} />
+            <h3>{album.title}</h3>
+          </Link>
+        )
+      )}
     </div>
   );
 }
