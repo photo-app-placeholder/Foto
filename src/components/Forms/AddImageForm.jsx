@@ -64,6 +64,7 @@ export default function AddImageForm() {
       alert('error uploading');
     }
   };
+
   return (
     <form>
       <select value={album} onChange={(e) => setAlbum(e.target.value)}>
@@ -77,9 +78,9 @@ export default function AddImageForm() {
         required
         type="file"
         accept="image/*"
-        value={photo}
+        id="single"
         onChange={(e) => {
-          handleUpload;
+          handleUpload();
         }}
       />
       <input
