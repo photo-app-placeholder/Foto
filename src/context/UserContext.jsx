@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { getProfile, getProfileByUserId } from '../services/profiles';
 import { getUser } from '../services/users';
 
 export const UserContext = createContext();
@@ -6,10 +7,13 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const currentUser = getUser();
   const [user, setUser] = useState(
-    currentUser ? { id: currentUser.id, email: currentUser.email } : {}
+    currentUser
+      ? {
+          id: currentUser.id,
+          email: currentUser.email,
+        }
+      : {}
   );
-
-  console.log(user);
 
   const contextValue = { user, setUser };
 

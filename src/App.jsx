@@ -26,15 +26,15 @@ export default function App() {
               <Route exact path="/register">
                 <LoginView isRegistering />
               </Route>
+              <Route exact path="/addImage">
+                <AddImage />
+              </Route>
               <Route exact path="/:username">
                 <Profile />
               </Route>
               <PrivateRoute exact path="/:username/:album">
                 <AlbumView />
               </PrivateRoute>
-              <Route exact path="/addImage">
-                <AddImage />
-              </Route>
               <Route exact path="/:username/:album/:photo">
                 <ImageView />
               </Route>

@@ -1,27 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
-import { getProfileByUserId } from '../services/profiles';
+import { getProfile, getProfileByUserId } from '../services/profiles';
 
 export default function profileHook() {
   const [loading, setLoading] = useState(true);
-  const [profile, setProfile] = useState({});
-  const { user } = useUser();
-
-  const history = useHistory();
+  const [profile, setProfile] = useState([{}]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getProfileByUserId(user.id);
-        setProfile(data);
-      } catch (error) {
-        history.replace('/profile/edit');
-      }
-      setLoading(false);
-    };
-    fetchData();
+    getProfile()
+      .then((data) => setProfile(data))
+      .finally(() => setLoading(false));
   }, []);
 
-  return { loading, setLoading, profile, setProfile };
+  return { profile, setProfile, loading, setLoading };
 }
