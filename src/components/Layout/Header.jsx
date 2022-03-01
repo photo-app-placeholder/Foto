@@ -17,6 +17,7 @@ export default function Header() {
       <Link to="/register">Register</Link>
       <Link to="/noodles">Your Profile</Link>
       <Link to="/noodles/album1">Album1</Link>
+      <Link to="/newAlbum">Add Album</Link>
       <Link to="/addImage">Add Image</Link>
       <Link to="/noodles/album1/photo1">Album1's photo</Link>
       <Link to="/noodles/album1/photo1/edit">Edit Album1's photo</Link>

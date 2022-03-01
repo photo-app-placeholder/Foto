@@ -17,7 +17,7 @@ export async function findAlbumById(id) {
 export async function addAlbum({ private_public, user_id, code, title }) {
   const response = await client
     .from('albums')
-    .insert({ private_public, title, code })
+    .insert({ private_public, title, code, user_id })
     .match({ user_id });
   return checkError(response);
 }
