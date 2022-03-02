@@ -3,6 +3,7 @@ import { fetchAlbumsByUser } from '../../services/albums';
 import { useUser } from '../../context/UserContext';
 import styles from './Profile.css';
 import folderImage from '../../assets/folder.jpg';
+import locked from '../../assets/locked.png';
 import { Link } from 'react-router-dom';
 import profileHook from '../../hooks/profileHook';
 
@@ -26,7 +27,7 @@ export default function Profile() {
   }, []);
 
   return (
-    <div>
+    <div className={albumDiv}>
       {albums.map((album) =>
         album.private_public ? (
           // private
@@ -35,8 +36,10 @@ export default function Profile() {
             key={album.id}
             className={albumDiv}
           >
-            <img src={folderImage} />
-            <h3>{album.title}</h3>
+            <div>
+              <img src={locked} />
+              <h3>{album.title}</h3>
+            </div>
           </Link>
         ) : (
           // public
@@ -45,8 +48,10 @@ export default function Profile() {
             key={album.id}
             className={albumDiv}
           >
-            <img src={folderImage} />
-            <h3>{album.title}</h3>
+            <div>
+              <img src={folderImage} />
+              <h3>{album.title}</h3>
+            </div>
           </Link>
         )
       )}

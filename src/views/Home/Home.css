@@ -1,0 +1,10 @@
+.home img {
+  height: 170px;
+  object-fit: cover;
+}
+
+.home {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px;
+}

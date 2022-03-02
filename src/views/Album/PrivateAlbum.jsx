@@ -7,9 +7,9 @@ import profileHook from '../../hooks/profileHook';
 import { findAlbumById } from '../../services/albums';
 import { fetchPhotosByAlbumId, findPhotoById } from '../../services/photos';
 import ImageView from './ImageView';
-import './PrivateAlbum.css';
+import styles from './PrivateAlbum.css';
 import PrivatePhoto from './PrivatePhoto';
-
+const { privateAlbum } = styles;
 export default function PrivateAlbum() {
   const [loading, setLoading] = useState(true);
   const [enterCode, setEnterCode] = useState('');
@@ -56,7 +56,7 @@ export default function PrivateAlbum() {
     }
   };
   return (
-    <div>
+    <div className={privateAlbum}>
       {clickPhoto === false && (
         <PrivatePhoto
           clickPhoto={clickPhoto}

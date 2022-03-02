@@ -4,7 +4,9 @@ import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import profileHook from '../../hooks/profileHook';
 import { findAlbumById } from '../../services/albums';
 import { fetchPhotosByAlbumId, findPhotoById } from '../../services/photos';
+import styles from './AlbumView.css';
 
+const { albumView } = styles;
 export default function AlbumView() {
   const [currentAlbum, setCurrentAlbum] = useState({});
   const { album } = useParams();
@@ -23,7 +25,7 @@ export default function AlbumView() {
   }, [album]);
 
   return (
-    <div>
+    <div className={albumView}>
       {currentAlbum.private_public ? (
         <Redirect to={`${username}/${album.id}/unlock`} />
       ) : (
