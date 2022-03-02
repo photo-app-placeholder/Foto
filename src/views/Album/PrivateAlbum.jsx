@@ -58,7 +58,11 @@ export default function PrivateAlbum() {
   return (
     <div>
       {clickPhoto === false && (
-        <PrivatePhoto clickPhoto={clickPhoto} paramsPhoto={paramsPhoto} />
+        <PrivatePhoto
+          clickPhoto={clickPhoto}
+          setClickPhoto={setClickPhoto}
+          paramsPhoto={paramsPhoto}
+        />
       )}
       {isEntering === false && clickPhoto === true && (
         <>

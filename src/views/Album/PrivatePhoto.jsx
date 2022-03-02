@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { findPhotoById } from '../../services/photos';
 
-export default function PrivatePhoto({ clickPhoto = true, paramsPhoto }) {
+export default function PrivatePhoto({
+  clickPhoto = true,
+  setClickPhoto,
+  paramsPhoto,
+}) {
   const [loading, setLoading] = useState(true);
   const [photo, setPhoto] = useState({});
   console.log(paramsPhoto);
@@ -22,6 +26,7 @@ export default function PrivatePhoto({ clickPhoto = true, paramsPhoto }) {
             <img src={photo.photo} />
             <span>{photo.caption}</span>
             <span>{photo.created_at}</span>
+            <a onClick={(e) => setClickPhoto(true)}>back</a>
           </div>
         </>
       )}
