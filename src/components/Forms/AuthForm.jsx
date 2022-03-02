@@ -32,7 +32,7 @@ export default function AuthForm({ isRegistering }) {
       } else {
         let resp = await signInUser(formState.email, formState.password);
         setUser(resp);
-        history.replace(`/${formState.username}`);
+        window.location.replace(`/${formState.username}`);
       }
     } catch (error) {
       alert(`Login failed, please try again. error: ${error}`);
