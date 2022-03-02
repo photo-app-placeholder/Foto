@@ -1,5 +1,5 @@
 import React from 'react';
-import AddImageForm from '../../components/Forms/AddImageForm';
+import AddImageForm from '../../../components/Forms/AddImageForm';
 import styles from './AddImage.css';
 
 const { imageForm } = styles;

@@ -11,7 +11,8 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchRandomPhotos();
-      setRandomPhotoArray(data);
+      const randomData = data.sort((a, b) => 0.5 - Math.random());
+      setRandomPhotoArray(randomData);
       const data2 = await getProfileByUserId();
       console.log(data);
     };

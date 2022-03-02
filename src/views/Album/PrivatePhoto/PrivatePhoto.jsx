@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { findPhotoById } from '../../services/photos';
-import './PrivateAlbum.css';
+import { findPhotoById } from '../../../services/photos';
+import '../PrivateAlbum/PrivateAlbum.css';
 
 export default function PrivatePhoto({
   clickPhoto = true,

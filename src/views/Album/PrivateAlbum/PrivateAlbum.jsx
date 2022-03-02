@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
-import { findAlbumById } from '../../services/albums';
-import { fetchPhotosByAlbumId } from '../../services/photos';
+import { findAlbumById } from '../../../services/albums';
+import { fetchPhotosByAlbumId } from '../../../services/photos';
 
 import styles from './PrivateAlbum.css';
-import PrivatePhoto from './PrivatePhoto';
+import PrivatePhoto from '../PrivatePhoto/PrivatePhoto';
 const { privateAlbum, title, entering } = styles;
 
 export default function PrivateAlbum() {

@@ -4,15 +4,15 @@ import Layout from './components/Layout/Layout';
 import { UserProvider } from './context/UserContext';
 import LoginView from './views/Login/LoginView';
 import Profile from './views/Profile/Profile';
-import AlbumView from './views/Album/AlbumView';
-import AddImage from './views/Album/AddImage';
-import EditImage from './views/Album/EditImage';
-import ImageView from './views/Album/ImageView';
+import AlbumView from './views/Album/AlbumView/AlbumView';
+import AddImage from './views/Album/AddImage/AddImage';
+import EditImage from './views/Album/EditImage/EditImage';
+import ImageView from './views/Album/ImageView/ImageView';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import CreateAlbum from './views/Album/CreateAlbum';
+import CreateAlbum from './views/Album/CreateAlbum/CreateAlbum';
 import Home from './views/Home/Home';
-import PrivateAlbum from './views/Album/PrivateAlbum';
-import PrivatePhoto from './views/Album/PrivatePhoto';
+import PrivateAlbum from './views/Album/PrivateAlbum/PrivateAlbum';
+import PrivatePhoto from './views/Album/PrivatePhoto/PrivatePhoto';
 
 const { appStyles } = styles;
 

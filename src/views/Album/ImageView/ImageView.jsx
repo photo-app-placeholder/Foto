@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { findPhotoById } from '../../services/photos';
+import { findPhotoById } from '../../../services/photos';
 import { useParams, useHistory } from 'react-router-dom';
-import { deleteBucket, deletePhoto } from '../../services/photos';
-import { useUser } from '../../context/UserContext';
-import { findAlbumById } from '../../services/albums';
+import { deleteBucket, deletePhoto } from '../../../services/photos';
+import { useUser } from '../../../context/UserContext';
+import { findAlbumById } from '../../../services/albums';
 
 export default function ImageView() {
   const [currentPhoto, setCurrentPhoto] = useState({});
