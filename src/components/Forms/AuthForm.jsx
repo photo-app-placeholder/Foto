@@ -27,6 +27,8 @@ export default function AuthForm({ isRegistering }) {
           bio: '',
           user_id: resp.id,
         });
+        alert('Account created, please login.');
+        history.push('/login');
       } else {
         let resp = await signInUser(formState.email, formState.password);
         setUser(resp);

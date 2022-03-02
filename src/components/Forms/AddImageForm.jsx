@@ -6,7 +6,6 @@ import { useUser } from '../../context/UserContext';
 import { fetchAlbumsByUser } from '../../services/albums';
 import { uploadPhoto } from '../../services/photos';
 import profileHook from '../../hooks/profileHook';
-import AlbumView from '../../views/Album/AlbumView';
 
 export default function AddImageForm() {
   const [albums, setAlbums] = useState([]);
@@ -16,7 +15,6 @@ export default function AddImageForm() {
   const history = useHistory();
   const { profile } = profileHook();
   const { username } = profile[0];
-  console.log(album);
   const { user } = useUser();
 
   useEffect(() => {

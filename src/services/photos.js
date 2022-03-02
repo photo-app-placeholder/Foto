@@ -47,3 +47,13 @@ export async function fetchRandomPhotos() {
     .match({ private_public: false });
   return checkError(response);
 }
+
+export async function deletePhoto(id) {
+  const response = await client.from('photoTable').delete().eq('id', id);
+  return checkError(response);
+}
+
+export async function deleteBucket(path) {
+  const response = await client.storage.from('photos').remove([path]);
+  return checkError(response);
+}

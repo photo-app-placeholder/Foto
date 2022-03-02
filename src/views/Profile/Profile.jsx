@@ -31,7 +31,7 @@ export default function Profile() {
         album.private_public ? (
           // private
           <Link
-            to={`/${username}/${album.id}`}
+            to={`/${username}/${album.id}/unlock`}
             key={album.id}
             className={albumDiv}
           >
