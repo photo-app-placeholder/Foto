@@ -24,10 +24,19 @@ export async function uploadPhoto({
   user_id,
   album_id,
   private_public,
+  username,
 }) {
   const response = await client
     .from('photoTable')
-    .insert({ caption, photo, album, user_id, album_id, private_public })
+    .insert({
+      caption,
+      photo,
+      album,
+      user_id,
+      album_id,
+      private_public,
+      username,
+    })
     .match({ user_id });
   return checkError(response);
 }

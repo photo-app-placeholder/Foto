@@ -14,8 +14,6 @@ export default function Profile() {
   const { profile } = profileHook();
   const { username } = profile[0];
 
-  console.log(username);
-
   const [albums, setAlbums] = useState([{}]);
 
   useEffect(() => {

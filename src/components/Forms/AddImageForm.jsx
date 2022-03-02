@@ -38,9 +38,14 @@ export default function AddImageForm() {
         album: album.title,
         album_id: album.id,
         private_public: album.private_public,
+        username: username,
       });
       alert(`your photo has been uploaded to ${album.title}`);
-      history.replace(`/${username}/${album.id}`);
+      if (album.private_public === true) {
+        history.replace(`/${username}/${album.id}/unlock`);
+      } else {
+        history.replace(`/${username}/${album.id}`);
+      }
     } catch {
       throw new Error('something went wrong uploading your image');
     }
