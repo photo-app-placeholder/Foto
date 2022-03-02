@@ -6,13 +6,11 @@ import LoginView from './views/Login/LoginView';
 import Profile from './views/Profile/Profile';
 import AlbumView from './views/Album/AlbumView/AlbumView';
 import AddImage from './views/Album/AddImage/AddImage';
-import EditImage from './views/Album/EditImage/EditImage';
 import ImageView from './views/Album/ImageView/ImageView';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import CreateAlbum from './views/Album/CreateAlbum/CreateAlbum';
 import Home from './views/Home/Home';
 import PrivateAlbum from './views/Album/PrivateAlbum/PrivateAlbum';
-import PrivatePhoto from './views/Album/PrivatePhoto/PrivatePhoto';
 
 const { appStyles } = styles;
 
@@ -47,14 +45,8 @@ export default function App() {
               <PrivateRoute exact path="/:username/:album/unlock">
                 <PrivateAlbum />
               </PrivateRoute>
-              <PrivateRoute exact path="/:username/:album/:rando/:photo">
-                <PrivatePhoto />
-              </PrivateRoute>
               <Route exact path="/:username/:album/:photo">
                 <ImageView />
-              </Route>
-              <Route exact path="/:username/:album/:photo/edit">
-                <EditImage />
               </Route>
             </Switch>
           </Layout>
