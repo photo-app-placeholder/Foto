@@ -1,0 +1,19 @@
+.imageContainer {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  gap: 20px;
+}
+
+.imageContainer img {
+  width: 400px;
+  float: left;
+}
+
+.imageContainer button {
+  height: 30px;
+}
+
+.imageContainer input[type='text'] {
+  height: 30px;
+}

@@ -66,3 +66,11 @@ export async function deleteBucket(path) {
   const response = await client.storage.from('photos').remove([path]);
   return checkError(response);
 }
+
+export async function updatePhoto(caption, id) {
+  const response = await client
+    .from('photoTable')
+    .update({ caption })
+    .eq('id', id);
+  return checkError(response);
+}
