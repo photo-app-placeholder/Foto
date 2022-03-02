@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should display a form to add images 1`] = `
+exports[`should display a form to create an album 1`] = `
 <div>
   <div
     class="albumForm"
