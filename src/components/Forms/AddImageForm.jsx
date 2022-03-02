@@ -19,7 +19,7 @@ export default function AddImageForm() {
   const { profile } = profileHook();
   const { username } = profile[0];
   const { user } = useUser();
-  console.log(album);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchAlbumsByUser(user.id);

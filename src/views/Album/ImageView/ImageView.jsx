@@ -31,6 +31,7 @@ export default function ImageView() {
   console.log(photoPath);
 
   const handleDelete = async () => {
+    console.log(photoPath);
     await deletePhoto(photo);
     await deleteBucket(photoPath);
   };
