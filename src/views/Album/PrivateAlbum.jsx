@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { render } from 'react-dom';
-import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { Link, Redirect } from 'react-router-dom/cjs/react-router-dom.min';
-import profileHook from '../../hooks/profileHook';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+
 import { findAlbumById } from '../../services/albums';
-import { fetchPhotosByAlbumId, findPhotoById } from '../../services/photos';
-import ImageView from './ImageView';
+import { fetchPhotosByAlbumId } from '../../services/photos';
+
 import styles from './PrivateAlbum.css';
 import PrivatePhoto from './PrivatePhoto';
 const { privateAlbum, title, entering } = styles;
@@ -20,15 +18,12 @@ export default function PrivateAlbum() {
   const [isEntering, setIsEntering] = useState(true);
   const [clickPhoto, setClickPhoto] = useState(true);
   const [paramsPhoto, setParamsPhoto] = useState('');
-  const [currentPhoto, setCurrentPhoto] = useState('');
 
-  console.log(paramsPhoto);
   useEffect(() => {
     findAlbumById(album)
       .then((data) => setCurrentAlbum(data))
       .finally(() => setLoading(false));
     fetchPhotosByAlbumId(album).then((data) => setPhotos(data));
-    findPhotoById(paramsPhoto).then((data) => setCurrentPhoto(data));
   }, []);
 
   const handleSubmit = (e) => {
@@ -50,7 +45,6 @@ export default function PrivateAlbum() {
       e.preventDefault();
       setParamsPhoto(e.target.id);
       setClickPhoto(false);
-      console.log(rando);
       alert('click');
     } catch {
       throw new Error('yoinks');

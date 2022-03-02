@@ -5,7 +5,7 @@ import { signOutUser } from '../../services/users';
 import profileHook from '../../hooks/profileHook';
 import profilePic from '../../assets/profile.png';
 import styles from './Header.css';
-const { home } = styles;
+const { home, usernameText } = styles;
 
 export default function Header() {
   const { user, setUser } = useUser();
@@ -37,6 +37,7 @@ export default function Header() {
         {user.email && (
           <>
             <ul>
+              <h4 className={usernameText}>@{username}</h4>
               <Link to={`/${username}`}>
                 <img src={profilePic} />
               </Link>
