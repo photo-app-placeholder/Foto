@@ -15,6 +15,7 @@
 }
 
 .albumDiv a {
-  margin: 0px 30px 10px 10px;
-  float: right;
+  margin: 0px 0px 10px 50px;
+  float: left;
+  font-size: 10pt;
 }
