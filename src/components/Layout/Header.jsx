@@ -18,9 +18,9 @@ export default function Header() {
   };
   return (
     <header>
-      <div className={home}>
+      <h1 className={home}>
         <Link to="/">PhotoApp</Link>
-      </div>
+      </h1>
       <div>
         {!user.email && (
           <>
