@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should display a form to add images 1`] = `
+<div>
+  <div
+    class="albumForm"
+  >
+    <form>
+      <input
+        class="inputs"
+        placeholder="Album Title"
+        type="text"
+        value=""
+      />
+      <div
+        class="check"
+      >
+        <label>
+          Make Private
+          <input
+            type="checkbox"
+          />
+        </label>
+      </div>
+      <input
+        class="disabled"
+        minlength="4"
+        name="code"
+        placeholder="Access Code"
+        readonly=""
+        type="password"
+        value=""
+      />
+      <button>
+        Create
+      </button>
+    </form>
+  </div>
+</div>
+`;
