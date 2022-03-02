@@ -13,7 +13,7 @@ export default function AlbumView() {
   const [photos, setPhotos] = useState([]);
   const { profile } = profileHook();
   const { username } = profile[0];
-  console.log(album);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await findAlbumById(album);
