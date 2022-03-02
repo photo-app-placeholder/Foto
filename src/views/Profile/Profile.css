@@ -1,0 +1,21 @@
+.albumDiv img {
+  height: 150px;
+  width: 150px;
+}
+
+.albumDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.albumCard {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 40px 20px 20px 20px;
+}
+
+.albumDiv a {
+  margin: 0px 0px 10px 50px;
+  float: left;
+  font-size: 10pt;
+}

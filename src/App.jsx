@@ -1,3 +1,65 @@
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import styles from './App.css';
+import Layout from './components/Layout/Layout';
+import { UserProvider } from './context/UserContext';
+import LoginView from './views/Login/LoginView';
+import Profile from './views/Profile/Profile';
+import AlbumView from './views/Album/AlbumView';
+import AddImage from './views/Album/AddImage';
+import EditImage from './views/Album/EditImage';
+import ImageView from './views/Album/ImageView';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import CreateAlbum from './views/Album/CreateAlbum';
+import Home from './views/Home/Home';
+import PrivateAlbum from './views/Album/PrivateAlbum';
+import PrivatePhoto from './views/Album/PrivatePhoto';
+
+const { appStyles } = styles;
+
 export default function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <div className={appStyles}>
+      <BrowserRouter>
+        <UserProvider>
+          <Layout>
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route exact path="/login">
+                <LoginView />
+              </Route>
+              <Route exact path="/register">
+                <LoginView isRegistering />
+              </Route>
+              <Route exact path="/addImage">
+                <AddImage />
+              </Route>
+              <Route exact path="/newAlbum">
+                <CreateAlbum />
+              </Route>
+              <Route exact path="/:username">
+                <Profile />
+              </Route>
+              <PrivateRoute exact path="/:username/:album">
+                <AlbumView />
+              </PrivateRoute>
+              <PrivateRoute exact path="/:username/:album/unlock">
+                <PrivateAlbum />
+              </PrivateRoute>
+              <PrivateRoute exact path="/:username/:album/:rando/:photo">
+                <PrivatePhoto />
+              </PrivateRoute>
+              <Route exact path="/:username/:album/:photo">
+                <ImageView />
+              </Route>
+              <Route exact path="/:username/:album/:photo/edit">
+                <EditImage />
+              </Route>
+            </Switch>
+          </Layout>
+        </UserProvider>
+      </BrowserRouter>
+    </div>
+  );
 }

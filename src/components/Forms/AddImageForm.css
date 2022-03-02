@@ -1,0 +1,23 @@
+.imageform {
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  margin: auto;
+}
+
+.imageform select {
+  height: 30px;
+  width: 200px;
+}
+
+.imageform div {
+  width: 100%;
+  align-items: left;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.imageform button {
+  width: 100px;
+  height: 20px;
+}

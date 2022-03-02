@@ -1,0 +1,29 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  width: fit-content;
+}
+
+.auth input {
+  width: 210px;
+  height: 37px;
+  margin: 10px;
+  font-size: 12pt;
+}
+
+.auth button {
+  width: fit-content;
+  justify-content: center;
+  width: 218px;
+  height: 43px;
+  margin: 8px 12px 10px 12px;
+  font-size: 12pt;
+}
+
+.terms {
+  width: 230px;
+  font-size: 9pt;
+  color: rgb(68, 67, 67);
+}
