@@ -12,6 +12,7 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import CreateAlbum from './views/Album/CreateAlbum';
 import Home from './views/Home/Home';
 import PrivateAlbum from './views/Album/PrivateAlbum';
+import PrivatePhoto from './views/Album/PrivatePhoto';
 
 const { appStyles } = styles;
 
@@ -45,6 +46,9 @@ export default function App() {
               </PrivateRoute>
               <PrivateRoute exact path="/:username/:album/unlock">
                 <PrivateAlbum />
+              </PrivateRoute>
+              <PrivateRoute exact path="/:username/:album/:rando/:photo">
+                <PrivatePhoto />
               </PrivateRoute>
               <Route exact path="/:username/:album/:photo">
                 <ImageView />

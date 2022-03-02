@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { render } from 'react-dom';
+import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import profileHook from '../../hooks/profileHook';
 import { findAlbumById } from '../../services/albums';
-import { fetchPhotosByAlbumId } from '../../services/photos';
+import { fetchPhotosByAlbumId, findPhotoById } from '../../services/photos';
+import ImageView from './ImageView';
 import './PrivateAlbum.css';
+import PrivatePhoto from './PrivatePhoto';
 
 export default function PrivateAlbum() {
   const [loading, setLoading] = useState(true);
@@ -11,12 +17,17 @@ export default function PrivateAlbum() {
   const [currentAlbum, setCurrentAlbum] = useState({});
   const { album } = useParams();
   const [isEntering, setIsEntering] = useState(true);
+  const [clickPhoto, setClickPhoto] = useState(true);
+  const [paramsPhoto, setParamsPhoto] = useState('');
+  const [currentPhoto, setCurrentPhoto] = useState('');
 
+  console.log(paramsPhoto);
   useEffect(() => {
     findAlbumById(album)
       .then((data) => setCurrentAlbum(data))
       .finally(() => setLoading(false));
     fetchPhotosByAlbumId(album).then((data) => setPhotos(data));
+    findPhotoById(paramsPhoto).then((data) => setCurrentPhoto(data));
   }, []);
 
   const handleSubmit = (e) => {
@@ -33,14 +44,28 @@ export default function PrivateAlbum() {
     }
   };
 
+  const handlePhotoClick = async (e) => {
+    try {
+      e.preventDefault();
+      setParamsPhoto(e.target.id);
+      setClickPhoto(false);
+      console.log(rando);
+      alert('click');
+    } catch {
+      throw new Error('yoinks');
+    }
+  };
   return (
     <div>
-      {isEntering === false && (
+      {clickPhoto === false && (
+        <PrivatePhoto clickPhoto={clickPhoto} paramsPhoto={paramsPhoto} />
+      )}
+      {isEntering === false && clickPhoto === true && (
         <>
           {photos.map((photo) => (
-            <div key={photo.id}>
-              <img src={photo.photo} />
-            </div>
+            <a onClick={handlePhotoClick}>
+              <img id={photo.id} src={photo.photo} />
+            </a>
           ))}
         </>
       )}
