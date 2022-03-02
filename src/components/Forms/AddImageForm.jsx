@@ -6,6 +6,9 @@ import { useUser } from '../../context/UserContext';
 import { fetchAlbumsByUser } from '../../services/albums';
 import { uploadPhoto } from '../../services/photos';
 import profileHook from '../../hooks/profileHook';
+import styles from './AddImageForm.css';
+
+const { imageform } = styles;
 
 export default function AddImageForm() {
   const [albums, setAlbums] = useState([]);
@@ -35,9 +38,14 @@ export default function AddImageForm() {
         album: album.title,
         album_id: album.id,
         private_public: album.private_public,
+        username: username,
       });
       alert(`your photo has been uploaded to ${album.title}`);
-      history.replace(`/${username}/${album.id}`);
+      if (album.private_public === true) {
+        history.replace(`/${username}/${album.id}/unlock`);
+      } else {
+        history.replace(`/${username}/${album.id}`);
+      }
     } catch {
       throw new Error('something went wrong uploading your image');
     }
@@ -68,30 +76,41 @@ export default function AddImageForm() {
   };
 
   return (
-    <form>
-      <select onChange={(e) => setAlbum(JSON.parse(e.target.value))}>
-        <option>Pick an album</option>
-        {albums.map((albumOption) => (
-          <option key={albumOption.id} value={JSON.stringify(albumOption)}>
-            {albumOption.title}
-          </option>
-        ))}
-      </select>
-      <input
-        required
-        type="file"
-        accept="image/*"
-        id="single"
-        onChange={(e) => {
-          handleUpload(e);
-        }}
-      />
-      <input
-        type="text"
-        value={caption}
-        onChange={(e) => setCaption(e.target.value)}
-      />
-      <button onClick={handleSubmit}>Upload</button>
-    </form>
+    <div className={imageform}>
+      <form>
+        <div>
+          <select onChange={(e) => setAlbum(JSON.parse(e.target.value))}>
+            <option>Choose Album</option>
+            {albums.map((albumOption) => (
+              <option key={albumOption.id} value={JSON.stringify(albumOption)}>
+                {albumOption.title}
+              </option>
+            ))}
+          </select>
+        </div>
+        <>
+          <div>
+            <input
+              required
+              type="file"
+              accept="image/*"
+              id="single"
+              onChange={(e) => {
+                handleUpload(e);
+              }}
+            />
+          </div>
+          <div>
+            <textarea
+              type="text"
+              value={caption}
+              placeholder="Caption"
+              onChange={(e) => setCaption(e.target.value)}
+            />
+          </div>
+          <button onClick={handleSubmit}>Upload</button>
+        </>
+      </form>
+    </div>
   );
 }

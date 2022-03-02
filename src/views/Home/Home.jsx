@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { fetchRandomPhotos } from '../../services/photos';
+import { getProfileByUserId } from '../../services/profiles';
+import styles from './Home.css';
 
+const { home } = styles;
 export default function Home() {
   const [randomPhotoArray, setRandomPhotoArray] = useState([{}]);
 
@@ -8,16 +12,21 @@ export default function Home() {
     const fetchData = async () => {
       const data = await fetchRandomPhotos();
       setRandomPhotoArray(data);
+      const data2 = await getProfileByUserId();
+      console.log(data);
     };
     fetchData();
   }, []);
 
   return (
-    <div>
+    <div className={home}>
       {randomPhotoArray.map((photo) => (
-        <div key={photo.id}>
+        <Link
+          to={`/${photo.username}/${photo.album_id}/${photo.id}`}
+          key={photo.id}
+        >
           <img src={photo.photo} alt="random photo" />
-        </div>
+        </Link>
       ))}
     </div>
   );

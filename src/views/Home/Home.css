@@ -1,0 +1,11 @@
+.home img {
+  height: 230px;
+  margin: 0;
+}
+
+.home {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 60px 0px 0px 0px;
+}

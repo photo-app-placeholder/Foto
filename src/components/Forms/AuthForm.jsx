@@ -4,7 +4,9 @@ import { signInUser, signUpUser } from '../../services/users';
 import styles from './AuthForm.css';
 import { useUser } from '../../context/UserContext';
 import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
+const { auth, terms } = styles;
 export default function AuthForm({ isRegistering }) {
   const [formState, setFormState] = useState({
     email: '',
@@ -13,8 +15,6 @@ export default function AuthForm({ isRegistering }) {
   });
   const { setUser } = useUser();
   const history = useHistory();
-
-  const { auth } = styles;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ export default function AuthForm({ isRegistering }) {
           bio: '',
           user_id: resp.id,
         });
-        alert('Account created, please login.');
+        alert('Email confirmation sent, confirm email address then log in.');
         history.push('/login');
       } else {
         let resp = await signInUser(formState.email, formState.password);
@@ -41,7 +41,6 @@ export default function AuthForm({ isRegistering }) {
 
   return (
     <form className={auth} onSubmit={handleSubmit}>
-      <label>Email:</label>
       <input
         type="email"
         placeholder="Email"
@@ -50,7 +49,6 @@ export default function AuthForm({ isRegistering }) {
       />
       {isRegistering && (
         <>
-          <label>Username:</label>
           <input
             type="text"
             placeholder="Username"
@@ -61,7 +59,7 @@ export default function AuthForm({ isRegistering }) {
           />
         </>
       )}
-      <label>Password:</label>
+
       <input
         type="password"
         placeholder="Password"
@@ -70,7 +68,22 @@ export default function AuthForm({ isRegistering }) {
           setFormState({ ...formState, password: e.target.value })
         }
       />
-      <input type="submit" value="Login / Create Account" />
+      {isRegistering && (
+        <p className={terms}>
+          By signing up, you agree not to upload photos that contain graphic or
+          disturbing imagery that may be against the law.
+        </p>
+      )}
+      <button type="submit">{isRegistering ? 'Sign Up' : 'Login'}</button>
+      {isRegistering ? (
+        <p>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+      ) : (
+        <p>
+          New? <Link to="/register">Register</Link>
+        </p>
+      )}
     </form>
   );
 }

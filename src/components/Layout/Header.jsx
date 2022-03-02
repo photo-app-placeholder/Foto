@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 import { signOutUser } from '../../services/users';
 import profileHook from '../../hooks/profileHook';
+import profilePic from '../../assets/profile.png';
+import styles from './Header.css';
+const { home, usernameText } = styles;
 
 export default function Header() {
   const { user, setUser } = useUser();
@@ -15,18 +18,34 @@ export default function Header() {
   };
   return (
     <header>
-      <h1>{user.email}</h1>
-      <Link to="/">Home</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/register">Register</Link>
-      {user.email && (
-        <>
-          <Link to={`/${username}`}>Your Profile</Link>
-          <Link to="/newAlbum">Add Album</Link>
-          <Link to="/addImage">Add Image</Link>
-        </>
-      )}
-      {user.email && <button onClick={handleLogout}>Log Out</button>}
+      <h1 className={home}>
+        <Link to="/">PhotoApp</Link>
+      </h1>
+      <div>
+        {!user.email && (
+          <>
+            <ul>
+              <Link to="/login">
+                <li>Login</li>
+              </Link>
+              <Link to="/register">
+                <li>Register</li>
+              </Link>
+            </ul>
+          </>
+        )}
+        {user.email && (
+          <>
+            <ul>
+              <h4 className={usernameText}>@{username}</h4>
+              <Link to={`/${username}`}>
+                <img src={profilePic} />
+              </Link>
+              <button onClick={handleLogout}>Log Out</button>
+            </ul>
+          </>
+        )}
+      </div>
     </header>
   );
 }

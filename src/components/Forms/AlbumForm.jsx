@@ -3,6 +3,9 @@ import { useHistory } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
 import profileHook from '../../hooks/profileHook';
 import { addAlbum } from '../../services/albums';
+import styles from './AlbumForm.css';
+
+const { albumForm, check, disabled, inputs } = styles;
 
 export default function AlbumForm() {
   const [title, setTitle] = useState('');
@@ -11,7 +14,7 @@ export default function AlbumForm() {
   const { user } = useUser();
   const history = useHistory();
   const { profile } = profileHook();
-  console.log(user);
+  console.log(privatePublic);
 
   const handleSubmit = async (e) => {
     try {
@@ -30,34 +33,47 @@ export default function AlbumForm() {
   };
 
   return (
-    <form>
-      <input
-        type="text"
-        value={title}
-        placeholder="Album Title"
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <label>
-        Lock album?
+    <div className={albumForm}>
+      <form>
         <input
-          type="checkbox"
-          checked={privatePublic}
-          onChange={(e) => setPrivatePublic(e.target.value)}
+          className={inputs}
+          type="text"
+          value={title}
+          placeholder="Album Title"
+          onChange={(e) => setTitle(e.target.value)}
         />
-      </label>
-      {privatePublic ? (
-        <label>
-          Album Password:
+        <div className={check}>
+          <label>
+            Make Private
+            <input
+              type="checkbox"
+              checked={privatePublic}
+              onClick={(e) => setPrivatePublic(e.target.value)}
+            />
+          </label>
+        </div>
+        {privatePublic ? (
           <input
+            className={inputs}
             type="password"
             name="code"
-            value={code}
+            placeholder="Access Code"
             minLength="4"
             onChange={(e) => setCode(e.target.value)}
           />
-        </label>
-      ) : null}
-      <button onClick={handleSubmit}>Make Album</button>
-    </form>
+        ) : (
+          <input
+            className={disabled}
+            type="password"
+            name="code"
+            value={code}
+            placeholder="Access Code"
+            minLength="4"
+            readOnly
+          />
+        )}
+        <button onClick={handleSubmit}>Create</button>
+      </form>
+    </div>
   );
 }

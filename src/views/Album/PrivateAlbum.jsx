@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+
 import { findAlbumById } from '../../services/albums';
 import { fetchPhotosByAlbumId } from '../../services/photos';
-import './PrivateAlbum.css';
+
+import styles from './PrivateAlbum.css';
+import PrivatePhoto from './PrivatePhoto';
+const { privateAlbum, title, entering } = styles;
 
 export default function PrivateAlbum() {
   const [loading, setLoading] = useState(true);
@@ -11,6 +16,8 @@ export default function PrivateAlbum() {
   const [currentAlbum, setCurrentAlbum] = useState({});
   const { album } = useParams();
   const [isEntering, setIsEntering] = useState(true);
+  const [clickPhoto, setClickPhoto] = useState(true);
+  const [paramsPhoto, setParamsPhoto] = useState('');
 
   useEffect(() => {
     findAlbumById(album)
@@ -33,25 +40,46 @@ export default function PrivateAlbum() {
     }
   };
 
+  const handlePhotoClick = async (e) => {
+    try {
+      e.preventDefault();
+      setParamsPhoto(e.target.id);
+      setClickPhoto(false);
+      alert('click');
+    } catch {
+      throw new Error('yoinks');
+    }
+  };
   return (
-    <div>
-      {isEntering === false && (
+    <div className={privateAlbum}>
+      {clickPhoto === false && (
+        <PrivatePhoto
+          clickPhoto={clickPhoto}
+          setClickPhoto={setClickPhoto}
+          paramsPhoto={paramsPhoto}
+        />
+      )}
+      {isEntering === false && clickPhoto === true && (
         <>
+          <div className={title}>
+            <h1>{currentAlbum.title}</h1>
+            <Link to="/addImage">Add Image</Link>
+          </div>
           {photos.map((photo) => (
-            <div key={photo.id}>
-              <img src={photo.photo} />
-            </div>
+            <a onClick={handlePhotoClick}>
+              <img id={photo.id} src={photo.photo} />
+            </a>
           ))}
         </>
       )}
 
-      <form className="hide">
+      <form className={entering}>
         {isEntering ? (
           <>
-            <label>Enter Password: </label>
             <input
               type="password"
               value={enterCode}
+              placeholder="Access Code"
               onChange={(e) => setEnterCode(e.target.value)}
             ></input>
             <button onClick={handleSubmit}>Enter</button>

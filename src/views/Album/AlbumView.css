@@ -1,0 +1,18 @@
+.albumView img {
+  height: 225px;
+  margin: 0;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  margin: 10px 30px 30px 30px;
+}
+
+.title a {
+  height: 20px;
+  margin-top: 36px;
+  margin-left: 30px;
+  font-size: 10pt;
+}
