@@ -24,9 +24,9 @@ export default function ImageView() {
     };
     fetchData();
   }, []);
-  console.log(photoPath);
 
   const handleDelete = async () => {
+    console.log(photoPath);
     await deletePhoto(photo);
     await deleteBucket(photoPath);
   };
