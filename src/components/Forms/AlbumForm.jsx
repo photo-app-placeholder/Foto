@@ -48,7 +48,7 @@ export default function AlbumForm() {
             <input
               type="checkbox"
               checked={privatePublic}
-              onClick={(e) => setPrivatePublic(e.target.value)}
+              onClick={() => setPrivatePublic(!privatePublic)}
             />
           </label>
         </div>
