@@ -7,7 +7,7 @@ import locked from '../../assets/locked.png';
 import { Link } from 'react-router-dom';
 import profileHook from '../../hooks/profileHook';
 
-const { albumDiv } = styles;
+const { albumDiv, albumCard } = styles;
 
 export default function Profile() {
   const { user } = useUser();
@@ -28,33 +28,39 @@ export default function Profile() {
 
   return (
     <div className={albumDiv}>
-      {albums.map((album) =>
-        album.private_public ? (
-          // private
-          <Link
-            to={`/${username}/${album.id}/unlock`}
-            key={album.id}
-            className={albumDiv}
-          >
-            <div>
-              <img src={locked} />
-              <h3>{album.title}</h3>
-            </div>
-          </Link>
-        ) : (
-          // public
-          <Link
-            to={`/${username}/${album.id}`}
-            key={album.id}
-            className={albumDiv}
-          >
-            <div>
-              <img src={folderImage} />
-              <h3>{album.title}</h3>
-            </div>
-          </Link>
-        )
-      )}
+      <div>
+        <Link to="/newAlbum">New Album</Link>
+        <Link to="/addImage">Add Image</Link>
+      </div>
+      <div className={albumCard}>
+        {albums.map((album) =>
+          album.private_public ? (
+            // private
+            <Link
+              to={`/${username}/${album.id}/unlock`}
+              key={album.id}
+              className={albumDiv}
+            >
+              <div>
+                <img src={locked} />
+                <h3>{album.title}</h3>
+              </div>
+            </Link>
+          ) : (
+            // public
+            <Link
+              to={`/${username}/${album.id}`}
+              key={album.id}
+              className={albumDiv}
+            >
+              <div>
+                <img src={folderImage} />
+                <h3>{album.title}</h3>
+              </div>
+            </Link>
+          )
+        )}
+      </div>
     </div>
   );
 }

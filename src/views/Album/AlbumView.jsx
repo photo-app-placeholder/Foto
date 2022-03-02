@@ -6,7 +6,7 @@ import { findAlbumById } from '../../services/albums';
 import { fetchPhotosByAlbumId, findPhotoById } from '../../services/photos';
 import styles from './AlbumView.css';
 
-const { albumView } = styles;
+const { albumView, title } = styles;
 export default function AlbumView() {
   const [currentAlbum, setCurrentAlbum] = useState({});
   const { album } = useParams();
@@ -30,7 +30,10 @@ export default function AlbumView() {
         <Redirect to={`${username}/${album.id}/unlock`} />
       ) : (
         <>
-          <h1>{currentAlbum.title}</h1>
+          <div className={title}>
+            <h1>{currentAlbum.title}</h1>
+            <Link to="/addImage">Add Image</Link>
+          </div>
           {photos.map((photo) => (
             <Link to={`/${username}/${album}/${photo.id}`} key={photo.id}>
               <img src={photo.photo} />

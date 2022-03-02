@@ -5,5 +5,16 @@
 
 .albumDiv {
   display: flex;
+  flex-direction: column;
+}
+
+.albumCard {
+  display: flex;
   justify-content: space-evenly;
+  margin: 40px 20px 20px 20px;
+}
+
+.albumDiv a {
+  margin: 0px 30px 10px 10px;
+  float: right;
 }

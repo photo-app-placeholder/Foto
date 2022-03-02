@@ -1,0 +1,38 @@
+.albumForm {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin: auto;
+}
+
+.albumForm input {
+  width: 100%;
+  align-items: left;
+  margin-bottom: 40px;
+  margin-top: 20px;
+}
+
+.albumForm button {
+  width: 100px;
+  height: 20px;
+}
+
+.albumForm label {
+  display: flex;
+}
+
+.check input {
+  width: 20px;
+  margin: 2px;
+}
+
+.disabled {
+  background-color: rgba(75, 75, 75, 0.527);
+  height: 30px;
+  width: 200px;
+}
+
+.inputs {
+  height: 30px;
+  width: 200px;
+}

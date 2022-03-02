@@ -9,7 +9,8 @@ import { fetchPhotosByAlbumId, findPhotoById } from '../../services/photos';
 import ImageView from './ImageView';
 import styles from './PrivateAlbum.css';
 import PrivatePhoto from './PrivatePhoto';
-const { privateAlbum } = styles;
+const { privateAlbum, title, entering } = styles;
+
 export default function PrivateAlbum() {
   const [loading, setLoading] = useState(true);
   const [enterCode, setEnterCode] = useState('');
@@ -66,6 +67,10 @@ export default function PrivateAlbum() {
       )}
       {isEntering === false && clickPhoto === true && (
         <>
+          <div className={title}>
+            <h1>{currentAlbum.title}</h1>
+            <Link to="/addImage">Add Image</Link>
+          </div>
           {photos.map((photo) => (
             <a onClick={handlePhotoClick}>
               <img id={photo.id} src={photo.photo} />
@@ -74,13 +79,13 @@ export default function PrivateAlbum() {
         </>
       )}
 
-      <form className="hide">
+      <form className={entering}>
         {isEntering ? (
           <>
-            <label>Enter Password: </label>
             <input
               type="password"
               value={enterCode}
+              placeholder="Access Code"
               onChange={(e) => setEnterCode(e.target.value)}
             ></input>
             <button onClick={handleSubmit}>Enter</button>
