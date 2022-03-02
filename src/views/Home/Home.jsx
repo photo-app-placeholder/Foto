@@ -8,7 +8,6 @@ export default function Home() {
     const fetchData = async () => {
       const data = await fetchRandomPhotos();
       setRandomPhotoArray(data);
-      console.log(data);
     };
     fetchData();
   }, []);
