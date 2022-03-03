@@ -16,6 +16,7 @@ const {
   date,
   back,
   back2,
+  spinner,
 } = styles;
 
 export default function ImageView() {
@@ -50,7 +51,7 @@ export default function ImageView() {
     if (confirm('Are you sure you want to delete this photo?')) {
       await deletePhoto(photo);
       await deleteBucket(photoPath);
-      history.push('/');
+      history.goBack();
     }
   };
 
@@ -67,7 +68,7 @@ export default function ImageView() {
   const handleBack = () => {
     history.goBack();
   };
-
+  if (loading) return <span className={spinner}></span>;
   return (
     <div className={imageContainer}>
       <div className={back}>

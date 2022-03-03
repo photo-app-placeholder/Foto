@@ -8,7 +8,7 @@ import { uploadPhoto } from '../../../services/photos';
 import profileHook from '../../../hooks/profileHook';
 import styles from './AddImageForm.css';
 
-const { imageform, alert } = styles;
+const { imageform, alert, spinner } = styles;
 
 export default function AddImageForm() {
   const [albums, setAlbums] = useState([]);
@@ -19,7 +19,8 @@ export default function AddImageForm() {
   const { profile } = profileHook();
   const { username } = profile[0];
   const { user } = useUser();
-  const [msg, setMsg] = useState('');
+
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,6 +28,7 @@ export default function AddImageForm() {
       setAlbums(data);
       console.log(data);
       setAlbum(data[0]);
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -37,7 +39,7 @@ export default function AddImageForm() {
     const file = input.files[0];
     const filePath = photo.split('photos/').pop();
     try {
-      setMsg('Uploading..');
+      setLoading(true);
       await uploadPhoto({
         caption: caption,
         photo: photo,
@@ -95,8 +97,11 @@ export default function AddImageForm() {
     }
   };
 
+  if (loading) return <span className={spinner}></span>;
+
   return (
     <div className={imageform}>
+      <h1>Add Photo</h1>
       <form>
         <div>
           {albums.length >= 1 ? (
@@ -134,7 +139,6 @@ export default function AddImageForm() {
           />
         </div>
         <button onClick={handleSubmit}>Upload</button>
-        <p>{msg}</p>
       </form>
     </div>
   );

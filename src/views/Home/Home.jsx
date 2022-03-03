@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { fetchRandomPhotos } from '../../services/photos';
 import styles from './Home.css';
 
-const { home } = styles;
+const { home, spinner } = styles;
 export default function Home() {
   const [randomPhotoArray, setRandomPhotoArray] = useState([{}]);
   const [loading, setLoading] = useState(true);
@@ -18,7 +18,7 @@ export default function Home() {
     fetchData();
   }, []);
 
-  if (loading) return <h1>LOADING...</h1>;
+  if (loading) return <span className={spinner}></span>;
 
   return (
     <div className={home}>

@@ -7,7 +7,7 @@ import { fetchPhotosByAlbumId } from '../../../services/photos';
 
 import styles from './PrivateAlbum.css';
 import PrivatePhoto from '../PrivatePhoto/PrivatePhoto';
-const { privateAlbum, title, entering } = styles;
+const { privateAlbum, title, entering, spinner } = styles;
 
 export default function PrivateAlbum() {
   const [loading, setLoading] = useState(true);
@@ -30,10 +30,9 @@ export default function PrivateAlbum() {
     try {
       e.preventDefault();
       if (enterCode === currentAlbum.code) {
-        alert('correct');
         setIsEntering(false);
       } else {
-        alert('incorrect');
+        alert('Incorrect code. Try again');
       }
     } catch {
       throw new Error('error');
@@ -45,11 +44,12 @@ export default function PrivateAlbum() {
       e.preventDefault();
       setParamsPhoto(e.target.id);
       setClickPhoto(false);
-      alert('click');
     } catch {
       throw new Error('yoinks');
     }
   };
+
+  if (loading) return <span className={spinner}></span>;
   return (
     <div className={privateAlbum}>
       {clickPhoto === false && (

@@ -7,7 +7,7 @@ import { fetchPhotosByAlbumId, findPhotoById } from '../../../services/photos';
 import { getProfileByUserId } from '../../../services/profiles';
 import styles from './AlbumView.css';
 
-const { albumView, title, back2 } = styles;
+const { albumView, title, back2, spinner } = styles;
 export default function AlbumView() {
   const [currentAlbum, setCurrentAlbum] = useState({});
   const { album } = useParams();
@@ -34,10 +34,10 @@ export default function AlbumView() {
   const handleBack = () => {
     history.goBack();
   };
+
+  if (loading) return <span className={spinner}></span>;
   return (
     <div className={albumView}>
-      {loading && <h1>LOADING... </h1>}
-
       {currentAlbum.private_public ? (
         <Redirect to={`${username}/${album.id}/unlock`} />
       ) : (

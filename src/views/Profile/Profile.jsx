@@ -12,7 +12,7 @@ import profileHook from '../../hooks/profileHook';
 import { findPhotoById } from '../../services/photos';
 import { getProfile, getProfileByUserId } from '../../services/profiles';
 
-const { albumDiv, albumCard, alert } = styles;
+const { albumDiv, albumCard, alert, spinner } = styles;
 
 export default function Profile() {
   const { username } = useParams();
@@ -36,10 +36,9 @@ export default function Profile() {
     };
     fetchData();
   }, [username, loading]);
-
+  if (loading) return <span className={spinner}></span>;
   return (
     <div className={albumDiv}>
-      {loading && <h1>LOADING...</h1>}
       {!loading && (
         <>
           <h1>@{albumUser}</h1>

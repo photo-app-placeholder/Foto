@@ -22,3 +22,78 @@
   margin-top: 37px;
   margin-left: 0;
 }
+
+.spinner {
+  height: 48px;
+  width: 4px;
+  background: #1f1f1f;
+  position: relative;
+  display: inline-block;
+  border-radius: 5px;
+  animation: animateSticks1 3s ease infinite;
+}
+.spinner::before,
+.spinner::after {
+  height: inherit;
+  width: inherit;
+  content: '';
+  display: block;
+  background: inherit;
+  position: absolute;
+  border-radius: 4px;
+}
+.spinner::before {
+  left: 0;
+  animation: animateSticks2 1s 0.5s ease infinite;
+}
+.spinner::after {
+  right: 0;
+  animation: animateSticks3 1s 1s ease infinite;
+}
+
+@keyframes animateSticks1 {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+@keyframes animateSticks2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  50%,
+  100% {
+    transform: rotate(55deg);
+  }
+}
+
+@keyframes animateSticks3 {
+  0% {
+    transform: rotate(0deg);
+  }
+  50%,
+  100% {
+    transform: rotate(115deg);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

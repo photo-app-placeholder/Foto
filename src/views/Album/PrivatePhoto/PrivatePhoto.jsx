@@ -10,8 +10,16 @@ import {
 import '../PrivateAlbum/PrivateAlbum.css';
 import styles from './PrivatePhoto.css';
 
-const { privateView, details, editing, userName, caption, date, deleteButton } =
-  styles;
+const {
+  privateView,
+  details,
+  editing,
+  userName,
+  caption,
+  date,
+  deleteButton,
+  spinner,
+} = styles;
 
 export default function PrivatePhoto({
   clickPhoto = true,
@@ -33,6 +41,7 @@ export default function PrivatePhoto({
     const dateUpdated = data.created_at.split('T').shift();
     setDisplayDate(dateUpdated);
     setPhotoPath(data.photo.split('photos/').pop());
+    setLoading(false);
   }, [isEditing]);
 
   const handleDelete = async () => {
@@ -51,6 +60,8 @@ export default function PrivatePhoto({
       alert(error);
     }
   };
+
+  if (loading) return <span className={spinner}></span>;
 
   return (
     <div className={privateView}>
