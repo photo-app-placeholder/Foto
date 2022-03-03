@@ -19,13 +19,12 @@ export default function ImageView() {
   const history = useHistory();
 
   const params = useParams();
-  const { photo, album } = params;
+  const { photo } = params;
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await findPhotoById(photo);
       setCurrentPhoto(data);
-
       setPhotoPath(data.photo.split('photos/').pop());
     };
     fetchData();

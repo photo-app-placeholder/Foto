@@ -12,7 +12,7 @@ const { albumDiv, albumCard } = styles;
 export default function Profile() {
   const { user } = useUser();
   const { profile } = profileHook();
-  const { username } = profile[0];
+  const { username } = profile[0] || '';
 
   const [albums, setAlbums] = useState([{}]);
 
