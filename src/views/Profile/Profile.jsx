@@ -7,12 +7,12 @@ import { useUser } from '../../context/UserContext';
 import styles from './Profile.css';
 import folderImage from '../../assets/folder.jpg';
 import locked from '../../assets/locked.png';
-import { Link, useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import profileHook from '../../hooks/profileHook';
 import { findPhotoById } from '../../services/photos';
 import { getProfile, getProfileByUserId } from '../../services/profiles';
 
-const { albumDiv, albumCard } = styles;
+const { albumDiv, albumCard, alert } = styles;
 
 export default function Profile() {
   const { username } = useParams();
@@ -47,38 +47,46 @@ export default function Profile() {
             {albumUser === currentUser.username && (
               <>
                 <Link to="/newAlbum">New Album</Link>
-                <Link to="/addImage">Add Image</Link>
               </>
+            )}
+            {albumUser === currentUser.username && albums.length >= 1 && (
+              <Link to="/addImage">Add Image</Link>
             )}
           </div>
           <div className={albumCard}>
-            {albums.map((album) =>
-              album.private_public ? (
-                // private
-                <Link
-                  to={`/${username}/${album.id}/unlock`}
-                  key={album.id}
-                  className={albumDiv}
-                >
-                  <div>
-                    <img src={locked} />
-                    <h3>{album.title}</h3>
-                  </div>
-                </Link>
-              ) : (
-                // public
-                <Link
-                  to={`/${username}/${album.id}`}
-                  key={album.id}
-                  className={albumDiv}
-                >
-                  <div>
-                    <img src={folderImage} />
-                    <h3>{album.title}</h3>
-                  </div>
-                </Link>
-              )
-            )}
+            {albums.length >= 1
+              ? albums.map((album) =>
+                  album.private_public ? (
+                    // private
+                    <Link
+                      to={`/${username}/${album.id}/unlock`}
+                      key={album.id}
+                      className={albumDiv}
+                    >
+                      <div>
+                        <img src={locked} />
+                        <h3>{album.title}</h3>
+                      </div>
+                    </Link>
+                  ) : (
+                    // public
+                    <Link
+                      to={`/${username}/${album.id}`}
+                      key={album.id}
+                      className={albumDiv}
+                    >
+                      <div>
+                        <img src={folderImage} />
+                        <h3>{album.title}</h3>
+                      </div>
+                    </Link>
+                  )
+                )
+              : albumUser === currentUser.username && (
+                  <span className={alert}>
+                    Your albums will go here. Make a new album to get started.{' '}
+                  </span>
+                )}
           </div>
         </>
       )}

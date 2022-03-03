@@ -1,0 +1,38 @@
+.about {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 100px 0 100px;
+  gap: 10px;
+}
+
+.one {
+}
+
+.two {
+}
+
+.three {
+}
+
+.four {
+}
+
+.one,
+.two,
+.three,
+.four {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 250px;
+  margin: 0;
+}
+
+.about a {
+  font-size: 13pt;
+}
+
+.secondRow {
+}

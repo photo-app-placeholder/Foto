@@ -96,17 +96,23 @@ export default function ImageView() {
         ) : (
           <div className={details}>
             <>
-              <Link to={`/${currentPhoto.username}`} className={userName}>
-                @{currentPhoto.username}
-              </Link>
-              <span className={caption}>{currentPhoto.caption}</span>
-              <span className={date}>
-                {' '}
-                posted {displayDate} in{' '}
-                <a href={`/${currentPhoto.username}/${currentPhoto.album_id}`}>
-                  {currentPhoto.album}
-                </a>
-              </span>
+              {!loading && (
+                <>
+                  <Link to={`/${currentPhoto.username}`} className={userName}>
+                    @{currentPhoto.username}
+                  </Link>
+                  <span className={caption}>{currentPhoto.caption}</span>
+                  <span className={date}>
+                    {' '}
+                    posted {displayDate} in{' '}
+                    <a
+                      href={`/${currentPhoto.username}/${currentPhoto.album_id}`}
+                    >
+                      {currentPhoto.album}
+                    </a>
+                  </span>
+                </>
+              )}
               {currentPhoto.username === username && !loading && (
                 <button onClick={() => setIsEditing(true)}>Edit</button>
               )}

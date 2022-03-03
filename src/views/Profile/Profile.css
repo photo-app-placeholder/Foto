@@ -19,3 +19,8 @@
   float: left;
   font-size: 10pt;
 }
+
+.albumCard .alert {
+  color: rgb(148, 146, 146);
+  font-size: 13pt;
+}

@@ -11,7 +11,7 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import CreateAlbum from './views/Album/CreateAlbum/CreateAlbum';
 import Home from './views/Home/Home';
 import PrivateAlbum from './views/Album/PrivateAlbum/PrivateAlbum';
-import About from './views/About/About';
+import About from './components/About/About';
 
 const { appStyles } = styles;
 
@@ -31,27 +31,27 @@ export default function App() {
               <Route exact path="/register">
                 <LoginView isRegistering />
               </Route>
-              <Route exact path="/addImage">
+              <PrivateRoute exact path="/addImage">
                 <AddImage />
-              </Route>
-              <Route exact path="/newAlbum">
+              </PrivateRoute>
+              <PrivateRoute exact path="/newAlbum">
                 <CreateAlbum />
-              </Route>
+              </PrivateRoute>
               <Route exact path="/about">
                 <About />
               </Route>
-              <Route exact path="/:username">
+              <PrivateRoute exact path="/:username">
                 <Profile />
-              </Route>
+              </PrivateRoute>
               <PrivateRoute exact path="/:username/:album">
                 <AlbumView />
               </PrivateRoute>
               <PrivateRoute exact path="/:username/:album/unlock">
                 <PrivateAlbum />
               </PrivateRoute>
-              <PrivateRoute exact path="/:username/:album/:photo">
+              <Route exact path="/:username/:album/:photo">
                 <ImageView />
-              </PrivateRoute>
+              </Route>
             </Switch>
           </Layout>
         </UserProvider>

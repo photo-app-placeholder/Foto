@@ -31,7 +31,7 @@ header a {
 
 header img {
   height: 35px;
-  margin-right: 30px;
+  margin-right: 28px;
   margin-top: 5px;
 }
 header button {
@@ -41,5 +41,12 @@ header button {
 }
 
 .usernameText {
-  margin: 20px 30px 0px 0px;
+  margin: 20px 28px 0px 0px;
+}
+
+.logout {
+  background-color: white;
+  border: 1pt solid black;
+  cursor: pointer;
+  margin-top: 18px;
 }

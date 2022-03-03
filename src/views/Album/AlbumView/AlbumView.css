@@ -12,7 +12,13 @@
 
 .title a {
   height: 20px;
-  margin-top: 36px;
+  margin-top: 37px;
   margin-left: 30px;
   font-size: 10pt;
+}
+.albumView .back2 {
+  text-align: left;
+  margin-right: 4rem;
+  margin-top: 37px;
+  margin-left: 0;
 }

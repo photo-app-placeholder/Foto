@@ -6,7 +6,7 @@ import profileHook from '../../hooks/profileHook';
 import profilePic from '../../assets/profile.png';
 import styles from './Header.css';
 import { useHistory } from 'react-router-dom';
-const { home, usernameText } = styles;
+const { home, usernameText, logout } = styles;
 
 export default function Header() {
   const { user, setUser } = useUser();
@@ -44,7 +44,9 @@ export default function Header() {
               <Link to={`/${username}`}>
                 <img src={profilePic} />
               </Link>
-              <button onClick={handleLogout}>Log Out</button>
+              <button className={logout} onClick={handleLogout}>
+                Log Out
+              </button>
             </ul>
           </>
         )}

@@ -42,6 +42,7 @@ export default function AlbumForm() {
           placeholder="Album Title"
           onChange={(e) => setTitle(e.target.value)}
         />
+        {}
         <div className={check}>
           <label>
             Make Private

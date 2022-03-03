@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import profileHook from '../../../hooks/profileHook';
 import { findAlbumById } from '../../../services/albums';
@@ -7,7 +7,7 @@ import { fetchPhotosByAlbumId, findPhotoById } from '../../../services/photos';
 import { getProfileByUserId } from '../../../services/profiles';
 import styles from './AlbumView.css';
 
-const { albumView, title } = styles;
+const { albumView, title, back2 } = styles;
 export default function AlbumView() {
   const [currentAlbum, setCurrentAlbum] = useState({});
   const { album } = useParams();
@@ -16,6 +16,7 @@ export default function AlbumView() {
   const { username } = profile[0];
   const [albumUser, setAlbumUser] = useState('');
   const [loading, setLoading] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +31,9 @@ export default function AlbumView() {
     fetchData();
   }, [album]);
 
+  const handleBack = () => {
+    history.goBack();
+  };
   return (
     <div className={albumView}>
       {loading && <h1>LOADING... </h1>}
@@ -38,8 +42,15 @@ export default function AlbumView() {
         <Redirect to={`${username}/${album.id}/unlock`} />
       ) : (
         <>
+          <a className={back2} onClick={handleBack}>
+            ← go back
+          </a>
           <div className={title}>
-            {!loading && <h1>{currentAlbum.title}</h1>}
+            {!loading && (
+              <>
+                <h1>{currentAlbum.title}</h1>
+              </>
+            )}
             {albumUser.username === username && !loading && (
               <Link to="/addImage">Add Image</Link>
             )}

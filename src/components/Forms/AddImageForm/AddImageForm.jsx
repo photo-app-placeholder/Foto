@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { client } from '../../../services/client';
 import { useUser } from '../../../context/UserContext';
 import { fetchAlbumsByUser } from '../../../services/albums';
@@ -8,7 +8,7 @@ import { uploadPhoto } from '../../../services/photos';
 import profileHook from '../../../hooks/profileHook';
 import styles from './AddImageForm.css';
 
-const { imageform } = styles;
+const { imageform, alert } = styles;
 
 export default function AddImageForm() {
   const [albums, setAlbums] = useState([]);
@@ -93,34 +93,45 @@ export default function AddImageForm() {
     <div className={imageform}>
       <form>
         <div>
-          <select onChange={handleAlbumSelect}>
-            {albums.map((albumOption) => (
-              <option key={albumOption.id} value={JSON.stringify(albumOption)}>
-                {albumOption.title}
-              </option>
-            ))}
-          </select>
+          {albums.length >= 1 ? (
+            <select onChange={handleAlbumSelect}>
+              {albums.map((albumOption) => (
+                <option
+                  key={albumOption.id}
+                  value={JSON.stringify(albumOption)}
+                >
+                  {albumOption.title}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <span className={alert}>
+              Please <Link to="/newAlbum">make an album.</Link>
+            </span>
+          )}
         </div>
-        <>
-          <div>
-            <input
-              required
-              type="file"
-              accept="image/*"
-              id="single"
-              onChange={handleUpload}
-            />
-          </div>
-          <div>
-            <textarea
-              type="text"
-              value={caption}
-              placeholder="Caption"
-              onChange={(e) => setCaption(e.target.value)}
-            />
-          </div>
-          <button onClick={handleSubmit}>Upload</button>
-        </>
+        {albums.length >= 1 && (
+          <>
+            <div>
+              <input
+                required
+                type="file"
+                accept="image/*"
+                id="single"
+                onChange={handleUpload}
+              />
+            </div>
+            <div>
+              <textarea
+                type="text"
+                value={caption}
+                placeholder="Caption"
+                onChange={(e) => setCaption(e.target.value)}
+              />
+            </div>
+            <button onClick={handleSubmit}>Upload</button>
+          </>
+        )}
       </form>
     </div>
   );
