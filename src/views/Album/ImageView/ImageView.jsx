@@ -52,7 +52,7 @@ export default function ImageView() {
 
   const handleEdit = async () => {
     try {
-      const data = await updatePhoto(newCaption, currentPhoto.id);
+      await updatePhoto(newCaption, currentPhoto.id);
 
       setIsEditing(false);
     } catch (error) {
@@ -69,6 +69,7 @@ export default function ImageView() {
             <input
               placeholder="New Caption"
               type="text"
+              defaultValue={currentPhoto.caption}
               onChange={(e) => setNewCaption(e.target.value)}
             />
             <button onClick={handleEdit}>Update</button>
