@@ -1,12 +1,15 @@
 .imageContainer {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   gap: 20px;
+  margin-left: 20%;
 }
 
 .imageContainer img {
-  height: 360px;
+  height: 400px;
   float: left;
+  margin-right: 10px;
 }
 
 .imageContainer button {
@@ -27,6 +30,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  text-align: left;
 }
 
 .deleteButton {
@@ -42,7 +46,7 @@
 
 .caption {
   font-size: 10pt;
-  font-style: italic;
+  color: rgb(65, 64, 64);
 }
 
 .editing {
@@ -53,4 +57,27 @@
 .editing button {
   text-align: left;
   font-size: 9pt;
+}
+
+.details button {
+  text-align: left;
+}
+
+.date {
+  color: gray;
+  font-style: italic;
+  font-size: 8.5pt;
+}
+
+.back {
+  width: fit-content;
+  font-size: 10pt;
+}
+
+.back2 {
+  color: rgba(0, 0, 0, 0.795);
+}
+
+.date a {
+  color: rgb(95, 94, 94);
 }

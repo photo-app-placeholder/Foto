@@ -14,6 +14,8 @@ const {
   caption,
   editing,
   date,
+  back,
+  back2,
 } = styles;
 
 export default function ImageView() {
@@ -62,37 +64,50 @@ export default function ImageView() {
 
   return (
     <div className={imageContainer}>
-      <img src={currentPhoto.photo} />
-      {isEditing ? (
-        <>
-          <div className={editing}>
-            <input
-              placeholder="New Caption"
-              type="text"
-              defaultValue={currentPhoto.caption}
-              onChange={(e) => setNewCaption(e.target.value)}
-            />
-            <button onClick={handleEdit}>Update</button>
-            <button className={deleteButton} onClick={() => handleDelete()}>
-              Delete Photo
-            </button>
-            <button onClick={() => setIsEditing(false)}>back</button>
-          </div>
-        </>
-      ) : (
-        <div className={details}>
+      <div className={back}>
+        <Link className={back2} to="/">
+          ← go back
+        </Link>
+      </div>
+      <div>
+        <img src={currentPhoto.photo} />
+        {isEditing ? (
           <>
-            <Link to={`/${currentPhoto.username}`} className={userName}>
-              @{currentPhoto.username}
-            </Link>
-            <span className={caption}>{currentPhoto.caption}</span>
-            <span className={date}>{displayDate}</span>
-            {currentPhoto.username === username && (
-              <button onClick={() => setIsEditing(true)}>Edit</button>
-            )}
+            <div className={editing}>
+              <input
+                placeholder="New Caption"
+                type="text"
+                defaultValue={currentPhoto.caption}
+                onChange={(e) => setNewCaption(e.target.value)}
+              />
+              <button onClick={handleEdit}>Update</button>
+              <button className={deleteButton} onClick={() => handleDelete()}>
+                Delete Photo
+              </button>
+              <button onClick={() => setIsEditing(false)}>Back</button>
+            </div>
           </>
-        </div>
-      )}
+        ) : (
+          <div className={details}>
+            <>
+              <Link to={`/${currentPhoto.username}`} className={userName}>
+                @{currentPhoto.username}
+              </Link>
+              <span className={caption}>{currentPhoto.caption}</span>
+              <span className={date}>
+                {' '}
+                posted {displayDate} in{' '}
+                <a href={`/${currentPhoto.username}/${currentPhoto.album_id}`}>
+                  {currentPhoto.album}
+                </a>
+              </span>
+              {currentPhoto.username === username && (
+                <button onClick={() => setIsEditing(true)}>Edit</button>
+              )}
+            </>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
