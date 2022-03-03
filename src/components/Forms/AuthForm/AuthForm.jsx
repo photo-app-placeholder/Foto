@@ -21,7 +21,6 @@ export default function AuthForm({ isRegistering }) {
     try {
       if (isRegistering) {
         let resp = await signUpUser(formState.email, formState.password);
-        console.log(resp);
         await createProfile({
           username: formState.username,
           bio: '',

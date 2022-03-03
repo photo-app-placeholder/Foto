@@ -14,7 +14,6 @@ export default function AlbumForm() {
   const { user } = useUser();
   const history = useHistory();
   const { profile } = profileHook();
-  console.log(privatePublic);
 
   const handleSubmit = async (e) => {
     try {

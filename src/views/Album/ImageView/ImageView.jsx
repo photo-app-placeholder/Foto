@@ -6,8 +6,15 @@ import { useUser } from '../../../context/UserContext';
 import { findAlbumById } from '../../../services/albums';
 import styles from './ImageView.css';
 import profileHook from '../../../hooks/profileHook';
-const { imageContainer, userName, details, deleteButton, caption, editing } =
-  styles;
+const {
+  imageContainer,
+  userName,
+  details,
+  deleteButton,
+  caption,
+  editing,
+  date,
+} = styles;
 
 export default function ImageView() {
   const [currentPhoto, setCurrentPhoto] = useState({});
@@ -21,15 +28,19 @@ export default function ImageView() {
   const params = useParams();
   const { photo } = params;
 
+  const [displayDate, setDisplayDate] = useState('');
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await findPhotoById(photo);
       setCurrentPhoto(data);
+      const dateUpdated = data.created_at.split('T').shift();
+      setDisplayDate(dateUpdated);
+      console.log(dateUpdated);
       setPhotoPath(data.photo.split('photos/').pop());
     };
     fetchData();
   }, [isEditing]);
-  console.log(photoPath);
 
   const handleDelete = async () => {
     if (confirm('Are you sure you want to delete this photo?')) {
@@ -43,11 +54,9 @@ export default function ImageView() {
     try {
       const data = await updatePhoto(newCaption, currentPhoto.id);
 
-      console.log(data);
-
       setIsEditing(false);
     } catch (error) {
-      console.log(error);
+      alert(error);
     }
   };
 
@@ -74,6 +83,7 @@ export default function ImageView() {
           <>
             <span className={userName}>@{currentPhoto.username}</span>
             <span className={caption}>{currentPhoto.caption}</span>
+            <span className={date}>{displayDate}</span>
             {currentPhoto.username === username && (
               <button onClick={() => setIsEditing(true)}>Edit</button>
             )}
