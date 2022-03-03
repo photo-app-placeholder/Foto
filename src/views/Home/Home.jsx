@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { fetchRandomPhotos } from '../../services/photos';
-import { getProfileByUserId } from '../../services/profiles';
 import styles from './Home.css';
 
 const { home } = styles;
 export default function Home() {
   const [randomPhotoArray, setRandomPhotoArray] = useState([{}]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchRandomPhotos();
       const randomData = data.sort((a, b) => 0.5 - Math.random());
       setRandomPhotoArray(randomData);
-      const data2 = await getProfileByUserId();
-      console.log(data);
+      setLoading(false);
     };
     fetchData();
   }, []);
+
+  if (loading) return <h1>Loading...</h1>;
 
   return (
     <div className={home}>
