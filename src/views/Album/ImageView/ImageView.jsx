@@ -23,6 +23,7 @@ export default function ImageView() {
   const [photoPath, setPhotoPath] = useState('');
   const [newCaption, setNewCaption] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { profile } = profileHook();
   const { username } = profile[0];
   const history = useHistory();
@@ -40,6 +41,7 @@ export default function ImageView() {
       setDisplayDate(dateUpdated);
       console.log(dateUpdated);
       setPhotoPath(data.photo.split('photos/').pop());
+      setLoading(false);
     };
     fetchData();
   }, [isEditing]);
@@ -105,7 +107,7 @@ export default function ImageView() {
                   {currentPhoto.album}
                 </a>
               </span>
-              {currentPhoto.username === username && (
+              {currentPhoto.username === username && !loading && (
                 <button onClick={() => setIsEditing(true)}>Edit</button>
               )}
             </>
