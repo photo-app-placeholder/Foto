@@ -1,12 +1,12 @@
 import { client, checkError } from './client.js';
 
-export async function getProfile() {
-  const request = await client.from('profiles').select('*');
+export async function getProfile(user_id) {
+  const request = await client.from('profiles').select('*').match({ user_id });
   return checkError(request);
 }
 
 export async function getProfileByUserId(user_id) {
-  const request = await client.from('profiles').select('*').match(user_id);
+  const request = await client.from('profiles').select('*').match({ user_id });
   return checkError(request);
 }
 

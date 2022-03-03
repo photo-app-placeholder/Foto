@@ -5,6 +5,7 @@ import styles from './AuthForm.css';
 import { useUser } from '../../../context/UserContext';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import profileHook from '../../../hooks/profileHook';
 
 const { auth, terms } = styles;
 export default function AuthForm({ isRegistering }) {
@@ -15,6 +16,8 @@ export default function AuthForm({ isRegistering }) {
   });
   const { setUser } = useUser();
   const history = useHistory();
+  const { profile } = profileHook();
+  console.log(profile);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +34,7 @@ export default function AuthForm({ isRegistering }) {
       } else {
         let resp = await signInUser(formState.email, formState.password);
         setUser(resp);
+
         window.location.replace(`/${formState.username}`);
       }
     } catch (error) {

@@ -5,16 +5,19 @@ import { signOutUser } from '../../services/users';
 import profileHook from '../../hooks/profileHook';
 import profilePic from '../../assets/profile.png';
 import styles from './Header.css';
+import { useHistory } from 'react-router-dom';
 const { home, usernameText } = styles;
 
 export default function Header() {
   const { user, setUser } = useUser();
   const { profile } = profileHook();
   const { username } = profile[0] || '';
+  const history = useHistory();
 
   const handleLogout = async () => {
     await signOutUser();
     setUser({});
+    history.push('/');
   };
   return (
     <header>
