@@ -27,7 +27,7 @@ export default function Home() {
           to={`/${photo.username}/${photo.album_id}/${photo.id}`}
           key={photo.id}
         >
-          <img src={photo.photo} alt="random photo" />
+          <img src={photo.photo} />
         </Link>
       ))}
     </div>
