@@ -62,12 +62,16 @@ export default function ImageView() {
     }
   };
 
+  const handleBack = () => {
+    history.goBack();
+  };
+
   return (
     <div className={imageContainer}>
       <div className={back}>
-        <Link className={back2} to="/">
+        <a className={back2} onClick={handleBack}>
           ← go back
-        </Link>
+        </a>
       </div>
       <div>
         <img src={currentPhoto.photo} />
