@@ -6,7 +6,7 @@ import styles from './Home.css';
 const { home } = styles;
 export default function Home() {
   const [randomPhotoArray, setRandomPhotoArray] = useState([{}]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
