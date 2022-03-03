@@ -28,11 +28,11 @@ export default function AuthForm({ isRegistering }) {
           user_id: resp.id,
         });
         alert('Email confirmation sent, confirm email address then log in.');
-        history.push('/login');
+        // history.push('/login');
       } else {
         let resp = await signInUser(formState.email, formState.password);
         setUser(resp);
-        window.location.replace(`/${formState.username}`);
+        // window.location.replace(`/${formState.username}`);
       }
     } catch (error) {
       alert(`Login failed, please try again. error: ${error}`);
