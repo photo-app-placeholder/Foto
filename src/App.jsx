@@ -45,9 +45,9 @@ export default function App() {
               <PrivateRoute exact path="/:username/:album/unlock">
                 <PrivateAlbum />
               </PrivateRoute>
-              <Route exact path="/:username/:album/:photo">
+              <PrivateRoute exact path="/:username/:album/:photo">
                 <ImageView />
-              </Route>
+              </PrivateRoute>
             </Switch>
           </Layout>
         </UserProvider>

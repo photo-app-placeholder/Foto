@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { createProfile } from '../../services/profiles';
-import { signInUser, signUpUser } from '../../services/users';
+import { createProfile } from '../../../services/profiles';
+import { signInUser, signUpUser } from '../../../services/users';
 import styles from './AuthForm.css';
-import { useUser } from '../../context/UserContext';
+import { useUser } from '../../../context/UserContext';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
