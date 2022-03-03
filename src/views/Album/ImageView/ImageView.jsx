@@ -5,24 +5,25 @@ import { deleteBucket, deletePhoto } from '../../../services/photos';
 import { useUser } from '../../../context/UserContext';
 import { findAlbumById } from '../../../services/albums';
 import styles from './ImageView.css';
-const { imageContainer } = styles;
+import profileHook from '../../../hooks/profileHook';
+const { imageContainer, userName, details, deleteButton, caption, editing } =
+  styles;
 
 export default function ImageView() {
   const [currentPhoto, setCurrentPhoto] = useState({});
   const [photoPath, setPhotoPath] = useState('');
   const [newCaption, setNewCaption] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const { profile } = profileHook();
+  const { username } = profile[0];
 
   const params = useParams();
   const { photo, album } = params;
-  const { history } = useHistory();
-  const { user } = useUser();
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await findPhotoById(photo);
       setCurrentPhoto(data);
-      const data2 = await findAlbumById(album);
 
       setPhotoPath(data.photo.split('photos/').pop());
     };
@@ -31,9 +32,10 @@ export default function ImageView() {
   console.log(photoPath);
 
   const handleDelete = async () => {
-    console.log(photoPath);
-    await deletePhoto(photo);
-    await deleteBucket(photoPath);
+    if (confirm('Are you sure you want to delete this photo?')) {
+      await deletePhoto(photo);
+      await deleteBucket(photoPath);
+    }
   };
 
   const handleEdit = async () => {
@@ -53,21 +55,30 @@ export default function ImageView() {
       <img src={currentPhoto.photo} />
       {isEditing ? (
         <>
-          <input
-            placeholder="New Caption"
-            type="text"
-            onChange={(e) => setNewCaption(e.target.value)}
-          />
-          <button onClick={handleEdit}>Update Caption</button>
+          <div className={editing}>
+            <input
+              placeholder="New Caption"
+              type="text"
+              onChange={(e) => setNewCaption(e.target.value)}
+            />
+            <button onClick={handleEdit}>Update</button>
+            <button className={deleteButton} onClick={() => handleDelete()}>
+              Delete Photo
+            </button>
+            <button onClick={() => setIsEditing(false)}>back</button>
+          </div>
         </>
       ) : (
-        <>
-          <span>{currentPhoto.caption}</span>
-          <button onClick={() => setIsEditing(true)}>Edit Caption</button>
-        </>
+        <div className={details}>
+          <>
+            <span className={userName}>@{currentPhoto.username}</span>
+            <span className={caption}>{currentPhoto.caption}</span>
+            {currentPhoto.username === username && (
+              <button onClick={() => setIsEditing(true)}>Edit</button>
+            )}
+          </>
+        </div>
       )}
-
-      <button onClick={() => handleDelete()}>Delete</button>
     </div>
   );
 }
