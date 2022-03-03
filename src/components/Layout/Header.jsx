@@ -22,7 +22,7 @@ export default function Header() {
   return (
     <header>
       <h1 className={home}>
-        <Link to="/">PhotoApp</Link>
+        <Link to="/">Foto.</Link>
       </h1>
       <div>
         {!user.email && (

@@ -15,6 +15,7 @@ export default function AlbumView() {
   const { profile } = profileHook();
   const { username } = profile[0];
   const [albumUser, setAlbumUser] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,22 +25,26 @@ export default function AlbumView() {
       setPhotos(data2);
       const data3 = await getProfileByUserId(data.user_id);
       setAlbumUser(data3[0]);
+      setLoading(false);
     };
     fetchData();
   }, [album]);
 
   return (
     <div className={albumView}>
+      {loading && <h1>LOADING... </h1>}
+
       {currentAlbum.private_public ? (
         <Redirect to={`${username}/${album.id}/unlock`} />
       ) : (
         <>
           <div className={title}>
-            <h1>{currentAlbum.title}</h1>
-            {albumUser.username === username && (
+            {!loading && <h1>{currentAlbum.title}</h1>}
+            {albumUser.username === username && !loading && (
               <Link to="/addImage">Add Image</Link>
             )}
           </div>
+
           {photos.map((photo) => (
             <Link to={`/${username}/${album}/${photo.id}`} key={photo.id}>
               <img src={photo.photo} />

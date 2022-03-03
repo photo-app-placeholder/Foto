@@ -23,6 +23,7 @@ export default function ImageView() {
   const [photoPath, setPhotoPath] = useState('');
   const [newCaption, setNewCaption] = useState('');
   const [isEditing, setIsEditing] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { profile } = profileHook();
   const { username } = profile[0];
   const history = useHistory();
@@ -40,6 +41,7 @@ export default function ImageView() {
       setDisplayDate(dateUpdated);
       console.log(dateUpdated);
       setPhotoPath(data.photo.split('photos/').pop());
+      setLoading(false);
     };
     fetchData();
   }, [isEditing]);
@@ -62,12 +64,16 @@ export default function ImageView() {
     }
   };
 
+  const handleBack = () => {
+    history.goBack();
+  };
+
   return (
     <div className={imageContainer}>
       <div className={back}>
-        <Link className={back2} to="/">
+        <a className={back2} onClick={handleBack}>
           ← go back
-        </Link>
+        </a>
       </div>
       <div>
         <img src={currentPhoto.photo} />
@@ -101,7 +107,7 @@ export default function ImageView() {
                   {currentPhoto.album}
                 </a>
               </span>
-              {currentPhoto.username === username && (
+              {currentPhoto.username === username && !loading && (
                 <button onClick={() => setIsEditing(true)}>Edit</button>
               )}
             </>
