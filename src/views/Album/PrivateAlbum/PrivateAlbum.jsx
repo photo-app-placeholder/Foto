@@ -52,6 +52,7 @@ export default function PrivateAlbum() {
   };
   return (
     <div className={privateAlbum}>
+      {loading && <h1>LOADING...</h1>}
       {clickPhoto === false && (
         <PrivatePhoto
           clickPhoto={clickPhoto}

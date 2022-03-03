@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { findPhotoById, updatePhoto } from '../../../services/photos';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { deleteBucket, deletePhoto } from '../../../services/photos';
 import { useUser } from '../../../context/UserContext';
 import { findAlbumById } from '../../../services/albums';
@@ -81,7 +81,9 @@ export default function ImageView() {
       ) : (
         <div className={details}>
           <>
-            <span className={userName}>@{currentPhoto.username}</span>
+            <Link to={`/${currentPhoto.username}`} className={userName}>
+              @{currentPhoto.username}
+            </Link>
             <span className={caption}>{currentPhoto.caption}</span>
             <span className={date}>{displayDate}</span>
             {currentPhoto.username === username && (

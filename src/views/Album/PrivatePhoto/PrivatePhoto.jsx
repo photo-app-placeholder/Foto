@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { findPhotoById } from '../../../services/photos';
 import '../PrivateAlbum/PrivateAlbum.css';
+import styles from './PrivatePhoto.css';
+
+const { privateView } = styles;
 
 export default function PrivatePhoto({
   clickPhoto = true,
@@ -17,7 +20,7 @@ export default function PrivatePhoto({
   }, []);
 
   return (
-    <div>
+    <div className={privateView}>
       {clickPhoto ? (
         <></>
       ) : (

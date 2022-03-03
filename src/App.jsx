@@ -11,6 +11,7 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import CreateAlbum from './views/Album/CreateAlbum/CreateAlbum';
 import Home from './views/Home/Home';
 import PrivateAlbum from './views/Album/PrivateAlbum/PrivateAlbum';
+import About from './views/About/About';
 
 const { appStyles } = styles;
 
@@ -35,6 +36,9 @@ export default function App() {
               </Route>
               <Route exact path="/newAlbum">
                 <CreateAlbum />
+              </Route>
+              <Route exact path="/about">
+                <About />
               </Route>
               <Route exact path="/:username">
                 <Profile />

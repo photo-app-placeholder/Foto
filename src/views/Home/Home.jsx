@@ -18,7 +18,7 @@ export default function Home() {
     fetchData();
   }, []);
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) return <h1>LOADING...</h1>;
 
   return (
     <div className={home}>
