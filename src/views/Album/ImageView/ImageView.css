@@ -1,12 +1,11 @@
 .imageContainer {
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
   gap: 20px;
 }
 
 .imageContainer img {
-  width: 400px;
+  height: 360px;
   float: left;
 }
 
