@@ -1,5 +1,5 @@
 import React from 'react';
-import AlbumForm from '../../../components/Forms/AlbumForm';
+import AlbumForm from '../../../components/Forms/AlbumForm/AlbumForm';
 import styles from './CreateAlbum.css';
 
 const { createAlbumView } = styles;

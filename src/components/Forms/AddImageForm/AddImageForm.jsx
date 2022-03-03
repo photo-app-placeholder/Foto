@@ -1,11 +1,11 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { client } from '../../services/client';
-import { useUser } from '../../context/UserContext';
-import { fetchAlbumsByUser } from '../../services/albums';
-import { uploadPhoto } from '../../services/photos';
-import profileHook from '../../hooks/profileHook';
+import { client } from '../../../services/client';
+import { useUser } from '../../../context/UserContext';
+import { fetchAlbumsByUser } from '../../../services/albums';
+import { uploadPhoto } from '../../../services/photos';
+import profileHook from '../../../hooks/profileHook';
 import styles from './AddImageForm.css';
 
 const { imageform } = styles;

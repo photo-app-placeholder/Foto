@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useUser } from '../../context/UserContext';
-import profileHook from '../../hooks/profileHook';
-import { addAlbum } from '../../services/albums';
+import { useUser } from '../../../context/UserContext';
+import profileHook from '../../../hooks/profileHook';
+import { addAlbum } from '../../../services/albums';
 import styles from './AlbumForm.css';
 
 const { albumForm, check, disabled, inputs } = styles;
