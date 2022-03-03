@@ -27,12 +27,12 @@ test('testing that our login works', async () => {
   userEvent.type(passwordInput, 'password');
 
   const button = screen.getByRole('button');
-  screen.debug(button);
-  userEvent.click(button);
+  //   screen.debug(button);
+  //   userEvent.click(button);
 
-  const name = await screen.findByRole('heading', {
-    name: /@zackmami/i,
-  });
+  //   const name = await screen.findByRole('heading', {
+  //     name: /@zackmami/i,
+  //   });
 
-  //   expect(name).toBeInTheDocument();
+  //   //   expect(name).toBeInTheDocument();
 });
