@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
-import profileHook from '../../hooks/profileHook';
-import { findAlbumById } from '../../services/albums';
-import { fetchPhotosByAlbumId, findPhotoById } from '../../services/photos';
+import profileHook from '../../../hooks/profileHook';
+import { findAlbumById } from '../../../services/albums';
+import { fetchPhotosByAlbumId, findPhotoById } from '../../../services/photos';
 import styles from './AlbumView.css';
 
 const { albumView, title } = styles;
@@ -13,7 +13,7 @@ export default function AlbumView() {
   const [photos, setPhotos] = useState([]);
   const { profile } = profileHook();
   const { username } = profile[0];
-  console.log(album);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await findAlbumById(album);

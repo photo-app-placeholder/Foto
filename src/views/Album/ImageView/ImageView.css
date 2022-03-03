@@ -1,0 +1,56 @@
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.imageContainer img {
+  height: 360px;
+  float: left;
+}
+
+.imageContainer button {
+  height: 30px;
+}
+
+.imageContainer input[type='text'] {
+  height: 30px;
+}
+
+.userName {
+  font-weight: bold;
+  text-align: left;
+  font-size: 15pt;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.deleteButton {
+  color: red;
+}
+
+.imageContainer button {
+  border: none;
+  background-color: white;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.caption {
+  font-size: 10pt;
+  font-style: italic;
+}
+
+.editing {
+  display: flex;
+  flex-direction: column;
+}
+
+.editing button {
+  text-align: left;
+  font-size: 9pt;
+}

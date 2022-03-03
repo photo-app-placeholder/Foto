@@ -4,15 +4,13 @@ import Layout from './components/Layout/Layout';
 import { UserProvider } from './context/UserContext';
 import LoginView from './views/Login/LoginView';
 import Profile from './views/Profile/Profile';
-import AlbumView from './views/Album/AlbumView';
-import AddImage from './views/Album/AddImage';
-import EditImage from './views/Album/EditImage';
-import ImageView from './views/Album/ImageView';
+import AlbumView from './views/Album/AlbumView/AlbumView';
+import AddImage from './views/Album/AddImage/AddImage';
+import ImageView from './views/Album/ImageView/ImageView';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import CreateAlbum from './views/Album/CreateAlbum';
+import CreateAlbum from './views/Album/CreateAlbum/CreateAlbum';
 import Home from './views/Home/Home';
-import PrivateAlbum from './views/Album/PrivateAlbum';
-import PrivatePhoto from './views/Album/PrivatePhoto';
+import PrivateAlbum from './views/Album/PrivateAlbum/PrivateAlbum';
 
 const { appStyles } = styles;
 
@@ -47,15 +45,9 @@ export default function App() {
               <PrivateRoute exact path="/:username/:album/unlock">
                 <PrivateAlbum />
               </PrivateRoute>
-              <PrivateRoute exact path="/:username/:album/:rando/:photo">
-                <PrivatePhoto />
-              </PrivateRoute>
-              <Route exact path="/:username/:album/:photo">
+              <PrivateRoute exact path="/:username/:album/:photo">
                 <ImageView />
-              </Route>
-              <Route exact path="/:username/:album/:photo/edit">
-                <EditImage />
-              </Route>
+              </PrivateRoute>
             </Switch>
           </Layout>
         </UserProvider>

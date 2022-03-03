@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { findPhotoById } from '../../services/photos';
-import './PrivateAlbum.css';
+import { findPhotoById } from '../../../services/photos';
+import '../PrivateAlbum/PrivateAlbum.css';
 
 export default function PrivatePhoto({
   clickPhoto = true,
@@ -9,14 +9,13 @@ export default function PrivatePhoto({
 }) {
   const [loading, setLoading] = useState(true);
   const [photo, setPhoto] = useState({});
-  console.log(paramsPhoto);
 
   useEffect(async () => {
     await findPhotoById(paramsPhoto)
       .then((data) => setPhoto(data))
       .finally(() => setLoading(false));
   }, []);
-  console.log(photo);
+
   return (
     <div>
       {clickPhoto ? (

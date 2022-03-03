@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useUser } from '../../context/UserContext';
-import profileHook from '../../hooks/profileHook';
-import { addAlbum } from '../../services/albums';
+import { useUser } from '../../../context/UserContext';
+import profileHook from '../../../hooks/profileHook';
+import { addAlbum } from '../../../services/albums';
 import styles from './AlbumForm.css';
 
 const { albumForm, check, disabled, inputs } = styles;
@@ -14,7 +14,6 @@ export default function AlbumForm() {
   const { user } = useUser();
   const history = useHistory();
   const { profile } = profileHook();
-  console.log(privatePublic);
 
   const handleSubmit = async (e) => {
     try {
@@ -48,7 +47,7 @@ export default function AlbumForm() {
             <input
               type="checkbox"
               checked={privatePublic}
-              onClick={(e) => setPrivatePublic(e.target.value)}
+              onClick={() => setPrivatePublic(!privatePublic)}
             />
           </label>
         </div>

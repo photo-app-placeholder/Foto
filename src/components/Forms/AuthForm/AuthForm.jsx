@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { createProfile } from '../../services/profiles';
-import { signInUser, signUpUser } from '../../services/users';
+import { createProfile } from '../../../services/profiles';
+import { signInUser, signUpUser } from '../../../services/users';
 import styles from './AuthForm.css';
-import { useUser } from '../../context/UserContext';
+import { useUser } from '../../../context/UserContext';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
@@ -21,7 +21,6 @@ export default function AuthForm({ isRegistering }) {
     try {
       if (isRegistering) {
         let resp = await signUpUser(formState.email, formState.password);
-        console.log(resp);
         await createProfile({
           username: formState.username,
           bio: '',
@@ -32,7 +31,7 @@ export default function AuthForm({ isRegistering }) {
       } else {
         let resp = await signInUser(formState.email, formState.password);
         setUser(resp);
-        history.push(`/${formState.username}`);
+        window.location.replace(`/${formState.username}`);
       }
     } catch (error) {
       alert(`Login failed, please try again. error: ${error}`);
