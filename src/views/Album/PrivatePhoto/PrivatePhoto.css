@@ -2,11 +2,18 @@
   display: flex;
   justify-content: center;
   gap: 20px;
+  margin-left: 8%;
+
+  text-align: left;
 }
 
 .privateView img {
   height: 360px;
   float: left;
+}
+
+.privateView a {
+  text-align: left;
 }
 
 .privateView button {
@@ -38,6 +45,7 @@
   background-color: white;
   text-decoration: underline;
   cursor: pointer;
+  text-align: left;
 }
 
 .caption {
@@ -53,4 +61,10 @@
 .editing button {
   text-align: left;
   font-size: 9pt;
+}
+
+.date {
+  color: gray;
+  font-style: italic;
+  font-size: 8.5pt;
 }

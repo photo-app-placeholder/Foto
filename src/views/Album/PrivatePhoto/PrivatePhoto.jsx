@@ -79,8 +79,8 @@ export default function PrivatePhoto({
                 <Link to={`/${photo.username}`} className={userName}>
                   @{photo.username}
                 </Link>
-                <span className={date}>{displayDate}</span>
                 <span className={caption}>{photo.caption}</span>
+                <span className={date}> posted {displayDate}</span>
                 {photo.username === username && (
                   <button onClick={() => setIsEditing(true)}>Edit</button>
                 )}
