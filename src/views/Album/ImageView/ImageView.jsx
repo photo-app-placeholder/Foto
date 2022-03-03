@@ -16,6 +16,7 @@ export default function ImageView() {
   const [isEditing, setIsEditing] = useState(false);
   const { profile } = profileHook();
   const { username } = profile[0];
+  const history = useHistory();
 
   const params = useParams();
   const { photo, album } = params;
@@ -35,6 +36,7 @@ export default function ImageView() {
     if (confirm('Are you sure you want to delete this photo?')) {
       await deletePhoto(photo);
       await deleteBucket(photoPath);
+      history.push('/');
     }
   };
 
