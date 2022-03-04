@@ -17,10 +17,10 @@ export default function AuthForm({ isRegistering }) {
   const { setUser } = useUser();
   const history = useHistory();
   const { profile } = profileHook();
-  console.log(profile);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('hello');
     try {
       if (isRegistering) {
         let resp = await signUpUser(formState.email, formState.password);
