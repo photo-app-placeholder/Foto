@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { findPhotoById, updatePhoto } from '../../../services/photos';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { deleteBucket, deletePhoto } from '../../../services/photos';
-import { useUser } from '../../../context/UserContext';
-import { findAlbumById } from '../../../services/albums';
 import styles from './ImageView.css';
 import profileHook from '../../../hooks/profileHook';
 const {

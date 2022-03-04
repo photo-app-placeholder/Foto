@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import styles from './App.css';
 import Layout from './components/Layout/Layout';
 import LoginView from './views/Login/LoginView';

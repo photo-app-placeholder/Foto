@@ -8,9 +8,8 @@ import styles from './Profile.css';
 import folderImage from '../../assets/folder.jpg';
 import locked from '../../assets/locked.png';
 import { Link, NavLink, useParams } from 'react-router-dom';
-import profileHook from '../../hooks/profileHook';
-import { findPhotoById } from '../../services/photos';
-import { getProfile, getProfileByUserId } from '../../services/profiles';
+
+import { getProfileByUserId } from '../../services/profiles';
 
 const { albumDiv, albumCard, alert, spinner } = styles;
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import profileHook from '../../../hooks/profileHook';
 import {
   deleteBucket,
@@ -34,6 +34,7 @@ export default function PrivatePhoto({
   const { username } = profile[0];
   const [newCaption, setNewCaption] = useState('');
   const [displayDate, setDisplayDate] = useState('');
+  const history = useHistory();
 
   useEffect(async () => {
     const data = await findPhotoById(paramsPhoto);
@@ -46,9 +47,9 @@ export default function PrivatePhoto({
 
   const handleDelete = async () => {
     if (confirm('Are you sure you want to delete this photo?')) {
-      await deletePhoto(photo);
+      await deletePhoto(photo.id);
       await deleteBucket(photoPath);
-      history.push('/');
+      history.goBack();
     }
   };
 
