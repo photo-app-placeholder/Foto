@@ -1,4 +1,4 @@
-# photo-app
+# Foto.
 
 ### Foto. is an application that allows authenticated users to upload their photos into private or public albums. Public albums are displayed across user profiles and on the Foto. home page, while private albums are password protected.
 
