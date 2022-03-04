@@ -11,11 +11,14 @@ export default function About() {
           <h1>
             Ckay <Link to="/ckay">@ckay</Link>
           </h1>
-          <p>Me likey breadsticks</p>
+          <p>
+            Developer with a knack for user-interface design. Check out my
+            photos!
+          </p>
         </div>
         <div className={two}>
           <h1>
-            Forest <Link to="/meow_fox">@meow_fox</Link>
+            Forest <Link to="/foresth">@foresth</Link>
           </h1>
           <p>
             Forest is a web developer in the Portland, OR area and appreciator
@@ -32,7 +35,7 @@ export default function About() {
         </div>
         <div className={four}>
           <h1>
-            Zachary <Link to="/zachmami">@zachmami</Link>
+            Zachary <Link to="/ZackMami">@ZackMami</Link>
           </h1>
           <p>
             Zach is a web developer in Portland, OR. He loves foraging for
