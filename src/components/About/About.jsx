@@ -25,7 +25,7 @@ export default function About() {
           <h1>
             Karyssa <Link to="/user">@user</Link>
           </h1>
-          <p>Huwwo</p>
+          <p>Full-stack web developer who loves sushi.</p>
         </div>
         <div className={four}>
           <h1>
