@@ -29,9 +29,14 @@ export default function About() {
         </div>
         <div className={four}>
           <h1>
-            Zachary <Link to="/user">@user</Link>
+            Zachary <Link to="/user">@zachmami</Link>
           </h1>
-          <p>Huwwo</p>
+          <p>
+            Zach is a web developer in Portland, OR. He loves foraging for
+            mushrooms with his dog. Zach loves when he forgets he is not muted
+            and burps loudly over zoom. He loves when projects dont have CSS in
+            the grading rubric.
+          </p>
         </div>
       </div>
     </div>
