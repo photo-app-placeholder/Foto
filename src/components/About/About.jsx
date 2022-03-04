@@ -23,7 +23,7 @@ export default function About() {
       <div className={secondRow}>
         <div className={three}>
           <h1>
-            Karyssa <Link to="/user">@user</Link>
+            Karyssa <Link to="/user">@ryssa</Link>
           </h1>
           <p>Full-stack web developer who loves sushi.</p>
         </div>
