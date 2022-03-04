@@ -16,3 +16,4 @@
 - Supabase
   - Backend
   - Photo storage
+  - Auth
