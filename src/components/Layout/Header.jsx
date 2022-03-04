@@ -5,21 +5,24 @@ import { signOutUser } from '../../services/users';
 import profileHook from '../../hooks/profileHook';
 import profilePic from '../../assets/profile.png';
 import styles from './Header.css';
-const { home, usernameText } = styles;
+import { useHistory } from 'react-router-dom';
+const { home, usernameText, logout } = styles;
 
 export default function Header() {
   const { user, setUser } = useUser();
   const { profile } = profileHook();
   const { username } = profile[0] || '';
+  const history = useHistory();
 
   const handleLogout = async () => {
     await signOutUser();
     setUser({});
+    history.push('/');
   };
   return (
     <header>
       <h1 className={home}>
-        <Link to="/">PhotoApp</Link>
+        <Link to="/">Foto.</Link>
       </h1>
       <div>
         {!user.email && (
@@ -41,7 +44,9 @@ export default function Header() {
               <Link to={`/${username}`}>
                 <img src={profilePic} />
               </Link>
-              <button onClick={handleLogout}>Log Out</button>
+              <button className={logout} onClick={handleLogout}>
+                Log Out
+              </button>
             </ul>
           </>
         )}

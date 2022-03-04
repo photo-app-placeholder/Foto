@@ -2,31 +2,8 @@
 
 exports[`should display a form to add images 1`] = `
 <div>
-  <div
-    class="imageform"
-  >
-    <form>
-      <div>
-        <select />
-      </div>
-      <div>
-        <input
-          accept="image/*"
-          id="single"
-          required=""
-          type="file"
-        />
-      </div>
-      <div>
-        <textarea
-          placeholder="Caption"
-          type="text"
-        />
-      </div>
-      <button>
-        Upload
-      </button>
-    </form>
-  </div>
+  <span
+    class="spinner"
+  />
 </div>
 `;

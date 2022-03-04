@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { client } from '../../../services/client';
 import { useUser } from '../../../context/UserContext';
 import { fetchAlbumsByUser } from '../../../services/albums';
@@ -8,7 +8,7 @@ import { uploadPhoto } from '../../../services/photos';
 import profileHook from '../../../hooks/profileHook';
 import styles from './AddImageForm.css';
 
-const { imageform } = styles;
+const { imageform, alert, spinner } = styles;
 
 export default function AddImageForm() {
   const [albums, setAlbums] = useState([]);
@@ -20,11 +20,15 @@ export default function AddImageForm() {
   const { username } = profile[0];
   const { user } = useUser();
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchAlbumsByUser(user.id);
       setAlbums(data);
+      console.log(data);
       setAlbum(data[0]);
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -35,6 +39,7 @@ export default function AddImageForm() {
     const file = input.files[0];
     const filePath = photo.split('photos/').pop();
     try {
+      setLoading(true);
       await uploadPhoto({
         caption: caption,
         photo: photo,
@@ -50,14 +55,13 @@ export default function AddImageForm() {
       if (uploadError) {
         throw uploadError;
       }
-      alert(`your photo has been uploaded to ${album.title}`);
       if (album.private_public === true) {
-        history.replace(`/${username}/${album.id}/unlock`);
+        history.push(`/${username}/${album.id}/unlock`);
       } else {
-        history.replace(`/${username}/${album.id}`);
+        history.push(`/${username}/${album.id}`);
       }
-    } catch {
-      throw new Error('something went wrong uploading your image');
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -79,48 +83,62 @@ export default function AddImageForm() {
   const handleAlbumSelect = (e) => {
     e.preventDefault();
     setAlbum(JSON.parse(e.target.value));
+
     const input = document.getElementById('single');
-    const file = input.files[0];
-    const fileExt = file.name.split('.').pop();
-    const fileName = `${new Date().toISOString()}.${fileExt}`;
-    const filePath = `${user.id}/${album.title}/${fileName}`;
-    setPhoto(
-      `https://enluotcdncgmywquucnd.supabase.in/storage/v1/object/public/photos/${filePath}`
-    );
+    if (input.files.length !== 0) {
+      const file = input.files[0];
+      console.log(file);
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${new Date().toISOString()}.${fileExt}`;
+      const filePath = `${user.id}/${album.title}/${fileName}`;
+      setPhoto(
+        `https://enluotcdncgmywquucnd.supabase.in/storage/v1/object/public/photos/${filePath}`
+      );
+    }
   };
+
+  if (loading) return <span className={spinner}></span>;
 
   return (
     <div className={imageform}>
+      <h1>Add Photo</h1>
       <form>
         <div>
-          <select onChange={handleAlbumSelect}>
-            {albums.map((albumOption) => (
-              <option key={albumOption.id} value={JSON.stringify(albumOption)}>
-                {albumOption.title}
-              </option>
-            ))}
-          </select>
+          {albums.length >= 1 ? (
+            <select onChange={handleAlbumSelect}>
+              {albums.map((albumOption) => (
+                <option
+                  key={albumOption.id}
+                  value={JSON.stringify(albumOption)}
+                >
+                  {albumOption.title}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <span className={alert}>
+              Please <Link to="/newAlbum">make an album.</Link>
+            </span>
+          )}
         </div>
-        <>
-          <div>
-            <input
-              required
-              type="file"
-              accept="image/*"
-              id="single"
-              onChange={handleUpload}
-            />
-          </div>
-          <div>
-            <textarea
-              type="text"
-              value={caption}
-              placeholder="Caption"
-              onChange={(e) => setCaption(e.target.value)}
-            />
-          </div>
-          <button onClick={handleSubmit}>Upload</button>
-        </>
+        <div>
+          <input
+            required
+            type="file"
+            accept="image/*"
+            id="single"
+            onChange={handleUpload}
+          />
+        </div>
+        <div>
+          <textarea
+            type="text"
+            value={caption}
+            placeholder="Caption"
+            onChange={(e) => setCaption(e.target.value)}
+          />
+        </div>
+        <button onClick={handleSubmit}>Upload</button>
       </form>
     </div>
   );

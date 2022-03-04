@@ -7,7 +7,6 @@ const { imageForm } = styles;
 export default function AddImage() {
   return (
     <div className={imageForm}>
-      <h1>Add Photo</h1>
       <AddImageForm />
     </div>
   );

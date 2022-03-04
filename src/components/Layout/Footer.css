@@ -3,9 +3,17 @@ footer {
 
   bottom: 0;
   margin-top: 70px;
-
+  gap: 20px;
   width: 100%;
   height: 20px;
   color: rgb(153, 153, 153);
   font-size: 8pt;
+}
+
+footer a {
+  color: rgb(153, 153, 153);
+}
+
+footer a:visited {
+  color: rgb(153, 153, 153);
 }

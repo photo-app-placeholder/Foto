@@ -21,3 +21,11 @@ export async function addAlbum({ private_public, user_id, code, title }) {
     .match({ user_id });
   return checkError(response);
 }
+
+export async function fetchAlbumsByUserIdByUsername(username) {
+  const response = await client
+    .from('profiles')
+    .select('*')
+    .match({ username });
+  return checkError(response);
+}

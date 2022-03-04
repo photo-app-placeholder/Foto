@@ -14,6 +14,7 @@ export default function AlbumForm() {
   const { user } = useUser();
   const history = useHistory();
   const { profile } = profileHook();
+  const { username } = profile[0];
 
   const handleSubmit = async (e) => {
     try {
@@ -25,7 +26,7 @@ export default function AlbumForm() {
         user_id: user.id,
       });
       alert(`${title} has been created.`);
-      history.push(`/${profile.username}`);
+      history.push(`/${username}`);
     } catch {
       throw new Error('something went wrong creating album');
     }
@@ -41,6 +42,7 @@ export default function AlbumForm() {
           placeholder="Album Title"
           onChange={(e) => setTitle(e.target.value)}
         />
+        {}
         <div className={check}>
           <label>
             Make Private

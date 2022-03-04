@@ -1,25 +1,72 @@
-.imageform {
+.privateView {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-left: 8%;
+
+  text-align: left;
+}
+
+.privateView img {
+  height: 360px;
+  float: left;
+}
+
+.privateView a {
+  text-align: left;
+}
+
+.privateView button {
+  height: 30px;
+}
+
+.privateView input[type='text'] {
+  height: 30px;
+}
+
+.userName {
+  font-weight: bold;
+  text-align: left;
+  font-size: 15pt;
+}
+
+.details {
   display: flex;
   flex-direction: column;
-  width: 180px;
-  margin: auto;
+  gap: 10px;
 }
 
-.imageform select {
-  height: 30px;
-  width: 200px;
+.deleteButton {
+  color: red;
 }
 
-.imageform div {
-  width: 100%;
-  align-items: left;
-  margin-bottom: 40px;
-  margin-top: 20px;
+.privateView button {
+  border: none;
+  background-color: white;
+  text-decoration: underline;
+  cursor: pointer;
+  text-align: left;
 }
 
-.imageform button {
-  width: 100px;
-  height: 20px;
+.caption {
+  font-size: 10pt;
+  font-style: italic;
+}
+
+.editing {
+  display: flex;
+  flex-direction: column;
+}
+
+.editing button {
+  text-align: left;
+  font-size: 9pt;
+}
+
+.date {
+  color: gray;
+  font-style: italic;
+  font-size: 8.5pt;
 }
 
 .spinner {

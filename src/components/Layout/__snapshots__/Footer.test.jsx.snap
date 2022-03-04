@@ -3,7 +3,15 @@
 exports[`should display footer 1`] = `
 <div>
   <footer>
-    © All Rights Reserved. 2022
+    <div>
+      © All Rights Reserved. 2022.
+       
+      <a
+        href="/about"
+      >
+        Learn more about us here.
+      </a>
+    </div>
   </footer>
 </div>
 `;
