@@ -1,16 +1,13 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { getUser } from '../services/users';
+import { createContext, useContext, useState } from 'react';
 
 export const UserContext = createContext();
 
-export const UserProvider = ({ children }) => {
-  const currentUser = getUser();
-  console.log(currentUser);
+export const UserProvider = ({ mockUser, children }) => {
   const [user, setUser] = useState(
-    currentUser
+    mockUser
       ? {
-          id: currentUser.id,
-          email: currentUser.email,
+          id: mockUser.id,
+          email: mockUser.email,
         }
       : {}
   );

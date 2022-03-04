@@ -1,22 +1,34 @@
-import { render, screen } from '@testing-library/react';
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
-import LoginView from './LoginView';
 import { UserProvider } from '../../context/UserContext';
 import App from '../../App';
 
-test('testing that our login works', async () => {
+jest.mock('../../context/UserContext');
+
+test('testing that our login works', () => {
   render(
-    <UserProvider>
-      <App />
-    </UserProvider>
+    <MemoryRouter>
+      <UserProvider
+        mockUser={{
+          email: 'mintyst.john@gmail.com',
+          id: '205e7e37-2fc8-4876-b3a3-3455158b0d1a',
+        }}
+      >
+        <App />
+      </UserProvider>
+    </MemoryRouter>
   );
 
-  const loginButton = screen.getByRole('link', {
+  const link = screen.getByRole('link', {
     name: /login/i,
   });
 
-  userEvent.click(loginButton);
+  userEvent.click(link);
 
   const userInput = screen.getByRole('textbox');
 
@@ -26,13 +38,17 @@ test('testing that our login works', async () => {
 
   userEvent.type(passwordInput, 'password');
 
-  const button = screen.getByRole('button');
-  //   screen.debug(button);
-  //   userEvent.click(button);
+  const button = screen.getByRole('button', {
+    name: /login/i,
+  });
 
-  //   const name = await screen.findByRole('heading', {
-  //     name: /@zackmami/i,
-  //   });
+  userEvent.click(button);
 
-  //   //   expect(name).toBeInTheDocument();
+  waitForElementToBeRemoved(button);
+
+  const name = screen.findByRole('heading', {
+    name: /@zackmami/i,
+  });
+  screen.debug();
+  expect(name).toBeInTheDocument();
 });

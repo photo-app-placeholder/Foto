@@ -17,7 +17,6 @@ export default function AuthForm({ isRegistering }) {
   const { setUser } = useUser();
   const history = useHistory();
   const { profile } = profileHook();
-  console.log(profile);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

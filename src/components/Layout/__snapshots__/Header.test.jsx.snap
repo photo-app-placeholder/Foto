@@ -9,7 +9,7 @@ exports[`should display header 1`] = `
       <a
         href="/"
       >
-        PhotoApp
+        Foto.
       </a>
     </h1>
     <div>
