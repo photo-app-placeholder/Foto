@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
-import { getProfile, getProfileByUserId } from '../services/profiles';
+import { getProfile } from '../services/profiles';
 
 export default function profileHook() {
   const [loading, setLoading] = useState(true);
