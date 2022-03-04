@@ -15,21 +15,24 @@ export default function About() {
         </div>
         <div className={two}>
           <h1>
-            Forest <Link to="/user">@user</Link>
+            Forest <Link to="/meow_fox">@meow_fox</Link>
           </h1>
-          <p>Huwwo</p>
+          <p>
+            Forest is a web developer in the Portland, OR area and appreciator
+            of random pictures of foxes and cats.
+          </p>
         </div>
       </div>
       <div className={secondRow}>
         <div className={three}>
           <h1>
-            Karyssa <Link to="/user">@ryssa</Link>
+            Karyssa <Link to="/ryssa">@ryssa</Link>
           </h1>
           <p>Full-stack web developer who loves sushi.</p>
         </div>
         <div className={four}>
           <h1>
-            Zachary <Link to="/user">@zachmami</Link>
+            Zachary <Link to="/zachmami">@zachmami</Link>
           </h1>
           <p>
             Zach is a web developer in Portland, OR. He loves foraging for
