@@ -5,7 +5,6 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const currentUser = getUser();
-  console.log(currentUser);
   const [user, setUser] = useState(
     currentUser
       ? {

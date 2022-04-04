@@ -11,7 +11,7 @@ const { home, usernameText, logout } = styles;
 export default function Header() {
   const { user, setUser } = useUser();
   const { profile } = profileHook();
-  const { username } = profile[0] || '';
+  const { username } = profile || '';
   const history = useHistory();
 
   const handleLogout = async () => {

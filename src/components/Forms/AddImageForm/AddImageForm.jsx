@@ -17,7 +17,7 @@ export default function AddImageForm() {
   const [caption, setCaption] = useState('');
   const history = useHistory();
   const { profile } = profileHook();
-  const { username } = profile[0];
+  const { username } = profile;
   const { user } = useUser();
 
   const [loading, setLoading] = useState(true);

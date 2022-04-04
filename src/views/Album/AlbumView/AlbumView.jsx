@@ -13,7 +13,7 @@ export default function AlbumView() {
   const { album } = useParams();
   const [photos, setPhotos] = useState([]);
   const { profile } = profileHook();
-  const { username } = profile[0];
+  const { username } = profile;
   const [albumUser, setAlbumUser] = useState('');
   const [loading, setLoading] = useState(true);
   const history = useHistory();
@@ -25,7 +25,7 @@ export default function AlbumView() {
       const data2 = await fetchPhotosByAlbumId(album);
       setPhotos(data2);
       const data3 = await getProfileByUserId(data.user_id);
-      setAlbumUser(data3[0]);
+      setAlbumUser(data3);
       setLoading(false);
     };
     fetchData();
