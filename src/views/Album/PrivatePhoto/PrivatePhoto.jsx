@@ -31,7 +31,7 @@ export default function PrivatePhoto({
   const [photo, setPhoto] = useState({});
   const [isEditing, setIsEditing] = useState(false);
   const { profile } = profileHook();
-  const { username } = profile[0];
+  const { username } = profile;
   const [newCaption, setNewCaption] = useState('');
   const [displayDate, setDisplayDate] = useState('');
   const history = useHistory();

@@ -29,7 +29,7 @@ export default function Profile() {
       const data = await fetchAlbumsByUser(data2[0].user_id);
       setAlbums(data);
       const data3 = await getProfileByUserId(user.id);
-      setCurrentUser(data3[0]);
+      setCurrentUser(data3);
 
       setLoading(false);
     };

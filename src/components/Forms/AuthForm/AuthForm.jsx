@@ -5,7 +5,6 @@ import styles from './AuthForm.css';
 import { useUser } from '../../../context/UserContext';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import profileHook from '../../../hooks/profileHook';
 
 const { auth, terms } = styles;
 export default function AuthForm({ isRegistering }) {
@@ -16,11 +15,9 @@ export default function AuthForm({ isRegistering }) {
   });
   const { setUser } = useUser();
   const history = useHistory();
-  const { profile } = profileHook();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('hello');
     try {
       if (isRegistering) {
         let resp = await signUpUser(formState.email, formState.password);
@@ -35,6 +32,7 @@ export default function AuthForm({ isRegistering }) {
         let resp = await signInUser(formState.email, formState.password);
         setUser(resp);
 
+        // any reason you're not using history.push here?
         window.location.replace(`/${formState.username}`);
       }
     } catch (error) {

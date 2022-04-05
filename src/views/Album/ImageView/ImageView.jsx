@@ -24,11 +24,10 @@ export default function ImageView() {
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(true);
   const { profile } = profileHook();
-  const { username } = profile[0];
+  const { username } = profile;
   const history = useHistory();
 
-  const params = useParams();
-  const { photo } = params;
+  const { photo } = useParams();
 
   const [displayDate, setDisplayDate] = useState('');
 
@@ -36,9 +35,10 @@ export default function ImageView() {
     const fetchData = async () => {
       const data = await findPhotoById(photo);
       setCurrentPhoto(data);
+      // may be able to use javascript dates to make this easier
+      // const date = new Date(data.created_at)
       const dateUpdated = data.created_at.split('T').shift();
       setDisplayDate(dateUpdated);
-      console.log(dateUpdated);
       setPhotoPath(data.photo.split('photos/').pop());
       setLoading(false);
     };
@@ -66,6 +66,7 @@ export default function ImageView() {
   const handleBack = () => {
     history.goBack();
   };
+
   if (loading) return <span className={spinner}></span>;
   return (
     <div className={imageContainer}>
